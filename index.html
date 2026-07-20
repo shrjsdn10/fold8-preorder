@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>갤럭시 폴드8 사전예약 알림 | 폰스팟</title>
+<style>
+  :root{
+    --navy-deep:#050a1a; --navy:#0a1330; --navy-card:#101c42;
+    --blue:#2f6bff; --blue-glow:#3d8bff; --cyan:#5ac8ff;
+    --white:#f4f7ff; --grey:#8b96b8; --kakao:#FEE500; --kakao-txt:#191600;
+    --radius:18px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Pretendard','Apple SD Gothic Neo','Noto Sans KR',sans-serif;}
+  html,body{background:#02040c;}
+  body{display:flex;justify-content:center;}
+  /* 모바일 전용 컨테이너 */
+  .page{width:100%;max-width:420px;min-height:100vh;background:linear-gradient(180deg,var(--navy-deep) 0%,var(--navy) 40%,#071026 100%);color:var(--white);overflow-x:hidden;}
+  section{padding:28px 20px;}
+  .sec-label{display:inline-block;font-size:12px;font-weight:700;color:var(--cyan);background:rgba(61,139,255,.12);border:1px solid rgba(61,139,255,.35);padding:5px 12px;border-radius:999px;margin-bottom:14px;letter-spacing:.5px;}
+  h2{font-size:20px;font-weight:800;margin-bottom:6px;line-height:1.35;}
+  .sub{font-size:13px;color:var(--grey);line-height:1.5;}
+
+  /* ① HERO */
+  .hero{position:relative;text-align:center;padding:48px 20px 36px;background:radial-gradient(ellipse 90% 60% at 50% 30%,rgba(47,107,255,.22),transparent 70%);}
+  .dday{display:inline-block;font-size:13px;font-weight:800;letter-spacing:2px;color:#fff;background:linear-gradient(90deg,#2f6bff,#5ac8ff);padding:7px 18px;border-radius:999px;margin-bottom:18px;box-shadow:0 0 24px rgba(61,139,255,.5);}
+  .hero h1{font-size:27px;font-weight:900;line-height:1.3;}
+  .hero h1 .en{background:linear-gradient(90deg,#7db4ff,#5ac8ff);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .hero p{font-size:14px;color:var(--grey);margin-top:8px;}
+  .silhouette{margin:26px auto 0;width:200px;filter:drop-shadow(0 0 34px rgba(61,139,255,.45));}
+
+  /* ② CTA */
+  .cta-wrap{padding:8px 20px 26px;text-align:center;}
+  .kakao-btn{display:block;width:100%;background:var(--kakao);color:var(--kakao-txt);font-size:16px;font-weight:800;padding:17px 0;border-radius:14px;text-decoration:none;box-shadow:0 6px 22px rgba(254,229,0,.22);}
+  .kakao-btn span{margin-right:6px;}
+  .cta-note{font-size:12px;color:var(--grey);margin-top:10px;}
+
+  /* ③ 달력 */
+  .cal-card{background:var(--navy-card);border:1px solid rgba(61,139,255,.25);border-radius:var(--radius);padding:18px 14px;margin-bottom:12px;}
+  .cal-title{font-size:14px;font-weight:800;color:var(--cyan);margin-bottom:10px;text-align:center;}
+  table.cal{width:100%;border-collapse:collapse;table-layout:fixed;}
+  table.cal th{font-size:11px;color:var(--grey);font-weight:600;padding:4px 0;}
+  table.cal td{text-align:center;font-size:13px;color:#c6cfe8;padding:0;height:40px;position:relative;}
+  table.cal td.dim{color:#3a4463;}
+  td.milestone .d{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#2f6bff,#5ac8ff);color:#fff;font-weight:800;box-shadow:0 0 14px rgba(61,139,255,.55);}
+  td.milestone .tag{position:absolute;left:50%;transform:translateX(-50%);bottom:-3px;font-size:8.5px;font-weight:700;color:var(--cyan);white-space:nowrap;}
+  .legend{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px;}
+  .legend .item{background:rgba(47,107,255,.1);border:1px solid rgba(61,139,255,.25);border-radius:12px;padding:10px 12px;}
+  .legend .date{font-size:15px;font-weight:900;color:#7db4ff;}
+  .legend .name{font-size:12px;font-weight:700;margin-top:2px;}
+  .disclaim{font-size:11px;color:#5a6688;margin-top:12px;text-align:center;}
+
+  /* ④ 혜택 예고 */
+  .benefit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0 14px;}
+  .b-card{aspect-ratio:1/1.15;background:linear-gradient(160deg,#16244f,#0c1636);border:1px solid rgba(61,139,255,.3);border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;position:relative;overflow:hidden;}
+  .b-card .chip{font-size:10px;font-weight:800;color:#fff;background:linear-gradient(90deg,#2f6bff,#5ac8ff);padding:3px 9px;border-radius:999px;}
+  .b-card .q{font-size:30px;font-weight:900;color:#7db4ff;filter:blur(2.5px);opacity:.85;}
+  .b-card::after{content:"";position:absolute;inset:0;backdrop-filter:blur(.5px);}
+  .benefit-copy{font-size:13.5px;line-height:1.55;color:#c6cfe8;text-align:center;}
+  .benefit-copy b{color:#fff;}
+
+  /* ⑤⑥⑧ 아코디언 */
+  details{background:var(--navy-card);border:1px solid rgba(61,139,255,.22);border-radius:14px;margin-bottom:10px;overflow:hidden;}
+  summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:16px;font-size:14.5px;font-weight:700;}
+  summary::-webkit-details-marker{display:none;}
+  summary .arrow{color:var(--cyan);font-size:12px;transition:.2s;}
+  details[open] .arrow{transform:rotate(180deg);}
+  .acc-body{padding:0 16px 16px;font-size:13px;color:var(--grey);line-height:1.6;}
+  .acc-body .sil-row{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+  .badge-soon{font-size:10px;font-weight:800;color:#0a1330;background:linear-gradient(90deg,#7db4ff,#5ac8ff);padding:3px 8px;border-radius:999px;margin-left:8px;vertical-align:middle;}
+  .mini-sil{width:44px;flex-shrink:0;filter:drop-shadow(0 0 8px rgba(61,139,255,.4));}
+
+  /* ⑨ 푸터 */
+  footer{padding:30px 20px 44px;text-align:center;border-top:1px solid rgba(61,139,255,.15);}
+  .sns{display:flex;justify-content:center;gap:12px;margin:16px 0;}
+  .sns a{width:42px;height:42px;border-radius:50%;background:rgba(61,139,255,.12);border:1px solid rgba(61,139,255,.3);display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:18px;}
+  .foot-info{font-size:11px;color:#5a6688;line-height:1.7;}
+  .divider{height:1px;background:linear-gradient(90deg,transparent,rgba(61,139,255,.3),transparent);margin:0 20px;}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ① 히어로 -->
+  <section class="hero">
+    <div class="dday" id="dday">UNPACKED D-?</div>
+    <h1><span class="en">Galaxy Fold 8</span><br>7월 22일 공개</h1>
+    <p>베일에 싸인 차세대 폴더블, 폰스팟에서 가장 먼저</p>
+    <svg class="silhouette" viewBox="0 0 200 210" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="rim" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#3d8bff"/><stop offset="100%" stop-color="#5ac8ff"/>
+        </linearGradient>
+        <linearGradient id="bodyg" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#0d1836"/><stop offset="100%" stop-color="#050a1a"/>
+        </linearGradient>
+      </defs>
+      <!-- 접힌 폴더블 실루엣 -->
+      <g>
+        <rect x="52" y="15" width="52" height="180" rx="12" fill="url(#bodyg)" stroke="url(#rim)" stroke-width="1.5"/>
+        <rect x="100" y="15" width="52" height="180" rx="12" fill="#070e22" stroke="url(#rim)" stroke-width="1.5" opacity=".92"/>
+        <line x1="102" y1="20" x2="102" y2="190" stroke="url(#rim)" stroke-width="1" opacity=".6"/>
+        <circle cx="126" cy="40" r="5" fill="none" stroke="url(#rim)" stroke-width="1" opacity=".7"/>
+        <circle cx="126" cy="58" r="5" fill="none" stroke="url(#rim)" stroke-width="1" opacity=".7"/>
+      </g>
+      <text x="100" y="207" text-anchor="middle" font-size="9" fill="#5a6688" letter-spacing="3">COMING SOON</text>
+    </svg>
+  </section>
+
+  <!-- ② 메인 CTA -->
+  <div class="cta-wrap">
+    <a class="kakao-btn" href="https://pf.kakao.com/_폰스팟채널" target="_blank"><span>💬</span>사전예약 오픈 알림 받기 (카카오톡)</a>
+    <p class="cta-note">채널 추가하면 사전예약 시작 즉시 알려드려요</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ③ 출시 일정 (달력) -->
+  <section>
+    <span class="sec-label">출시 일정</span>
+    <h2>언팩부터 정식 출시까지<br>한눈에 확인하세요</h2>
+    <div style="height:14px"></div>
+    <div class="cal-card"><div class="cal-title">2026. 07</div><table class="cal" id="cal-jul"></table></div>
+    <div class="cal-card"><div class="cal-title">2026. 08</div><table class="cal" id="cal-aug"></table></div>
+    <div class="legend">
+      <div class="item"><div class="date">7.22</div><div class="name">갤럭시 언팩</div></div>
+      <div class="item"><div class="date">7.28</div><div class="name">사전예약 시작</div></div>
+      <div class="item"><div class="date">8.4</div><div class="name">사전개통</div></div>
+      <div class="item"><div class="date">8.7</div><div class="name">정식 출시</div></div>
+    </div>
+    <p class="disclaim">일정은 삼성전자 공식 발표 기준이며 변동될 수 있습니다</p>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ④ 사전예약 혜택 예고 -->
+  <section>
+    <span class="sec-label">사전예약 혜택</span>
+    <h2>폰스팟 단독 혜택 준비 중</h2>
+    <div class="benefit-grid">
+      <div class="b-card"><span class="chip">혜택 1</span><span class="q">?</span></div>
+      <div class="b-card"><span class="chip">혜택 2</span><span class="q">?</span></div>
+      <div class="b-card"><span class="chip">혜택 3</span><span class="q">?</span></div>
+      <div class="b-card"><span class="chip">혜택 4</span><span class="q">?</span></div>
+      <div class="b-card"><span class="chip">혜택 5</span><span class="q">?</span></div>
+      <div class="b-card"><span class="chip">혜택 6</span><span class="q">?</span></div>
+    </div>
+    <p class="benefit-copy"><b>알림 신청자에게 가장 먼저 공개됩니다</b><br>사전예약 전날, 카카오톡으로 단독 혜택을 받아보세요</p>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ⑤ 기종별 사양 -->
+  <section>
+    <span class="sec-label">기종별 사양</span>
+    <h2>사양 안내 <span class="badge-soon">공개 예정</span></h2>
+    <div style="height:12px"></div>
+    <details>
+      <summary>갤럭시 폴드8 울트라 사양 <span class="arrow">▼</span></summary>
+      <div class="acc-body"><div class="sil-row">
+        <svg class="mini-sil" viewBox="0 0 40 60"><rect x="6" y="4" width="13" height="52" rx="4" fill="#0d1836" stroke="#3d8bff" stroke-width="1"/><rect x="19" y="4" width="13" height="52" rx="4" fill="#070e22" stroke="#3d8bff" stroke-width="1"/></svg>
+        <span>7월 22일 갤럭시 언팩에서 공개되는 즉시<br>이 자리에 상세 사양을 업데이트합니다.</span>
+      </div></div>
+    </details>
+    <details>
+      <summary>갤럭시 폴드8 사양 <span class="arrow">▼</span></summary>
+      <div class="acc-body"><div class="sil-row">
+        <svg class="mini-sil" viewBox="0 0 40 60"><rect x="6" y="4" width="13" height="52" rx="4" fill="#0d1836" stroke="#3d8bff" stroke-width="1"/><rect x="19" y="4" width="13" height="52" rx="4" fill="#070e22" stroke="#3d8bff" stroke-width="1"/></svg>
+        <span>7월 22일 갤럭시 언팩에서 공개되는 즉시<br>이 자리에 상세 사양을 업데이트합니다.</span>
+      </div></div>
+    </details>
+    <details>
+      <summary>갤럭시 플립8 사양 <span class="arrow">▼</span></summary>
+      <div class="acc-body"><div class="sil-row">
+        <svg class="mini-sil" viewBox="0 0 40 60"><rect x="8" y="6" width="24" height="24" rx="5" fill="#0d1836" stroke="#3d8bff" stroke-width="1"/><rect x="8" y="30" width="24" height="24" rx="5" fill="#070e22" stroke="#3d8bff" stroke-width="1"/></svg>
+        <span>7월 22일 갤럭시 언팩에서 공개되는 즉시<br>이 자리에 상세 사양을 업데이트합니다.</span>
+      </div></div>
+    </details>
+  </section>
+
+  <!-- ⑥ 기종별 가격 -->
+  <section style="padding-top:4px;">
+    <span class="sec-label">기종별 가격</span>
+    <h2>가격 안내 <span class="badge-soon">공개 예정</span></h2>
+    <div style="height:12px"></div>
+    <details>
+      <summary>갤럭시 폴드8 울트라 가격 <span class="arrow">▼</span></summary>
+      <div class="acc-body">출고가 공개 즉시 <b style="color:#7db4ff">폰스팟 사전예약가</b>와 함께 안내드립니다.</div>
+    </details>
+    <details>
+      <summary>갤럭시 폴드8 가격 <span class="arrow">▼</span></summary>
+      <div class="acc-body">출고가 공개 즉시 <b style="color:#7db4ff">폰스팟 사전예약가</b>와 함께 안내드립니다.</div>
+    </details>
+    <details>
+      <summary>갤럭시 플립8 가격 <span class="arrow">▼</span></summary>
+      <div class="acc-body">출고가 공개 즉시 <b style="color:#7db4ff">폰스팟 사전예약가</b>와 함께 안내드립니다.</div>
+    </details>
+  </section>
+
+  <!-- ⑦ 미드 CTA -->
+  <div class="cta-wrap">
+    <a class="kakao-btn" href="https://pf.kakao.com/_폰스팟채널" target="_blank"><span>💬</span>가격 공개되면 바로 알림 받기</a>
+    <p class="cta-note">출고가·사전예약가 공개 소식을 카카오톡으로 보내드려요</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ⑧ FAQ -->
+  <section>
+    <span class="sec-label">FAQ</span>
+    <h2>자주 묻는 질문</h2>
+    <div style="height:12px"></div>
+    <details>
+      <summary>사전예약은 어떻게 하나요? <span class="arrow">▼</span></summary>
+      <div class="acc-body">7월 28일부터 카카오톡 문의를 통해 사전예약이 가능합니다. 알림 신청하시면 오픈 즉시 안내드려요.</div>
+    </details>
+    <details>
+      <summary>알림 신청하면 뭐가 좋나요? <span class="arrow">▼</span></summary>
+      <div class="acc-body">사전예약 오픈 알림은 물론, 사전예약 전날 폰스팟 단독 혜택을 가장 먼저 받아보실 수 있습니다.</div>
+    </details>
+    <details>
+      <summary>매장 방문 없이 개통 가능한가요? <span class="arrow">▼</span></summary>
+      <div class="acc-body">네, 온라인·오프라인 개통 모두 가능합니다. 편하신 방법으로 진행해 드려요.</div>
+    </details>
+  </section>
+
+  <!-- ⑨ 푸터 -->
+  <footer>
+    <a class="kakao-btn" href="https://pf.kakao.com/_폰스팟채널" target="_blank"><span>💬</span>폴드8 소식 가장 먼저 받기</a>
+    <div class="sns">
+      <a href="https://instagram.com/폰스팟" target="_blank" title="인스타그램">📷</a>
+      <a href="https://pf.kakao.com/_폰스팟채널" target="_blank" title="카카오톡 채널">💬</a>
+    </div>
+    <p class="foot-info">폰스팟 (시티마켓)<br>문의: 카카오톡 채널 · 000-0000-0000<br>© PHONESPOT. All rights reserved.</p>
+  </footer>
+</div>
+
+<script>
+  // D-day (언팩 2026-07-22 기준)
+  (function(){
+    var unpack=new Date(2026,6,22), now=new Date();
+    var diff=Math.ceil((unpack-new Date(now.getFullYear(),now.getMonth(),now.getDate()))/864e5);
+    var el=document.getElementById('dday');
+    el.textContent = diff>0 ? 'UNPACKED D-'+diff : (diff===0 ? 'UNPACKED D-DAY' : 'UNPACKED 공개 완료');
+  })();
+
+  // 달력 렌더링
+  function buildCal(id, year, month, range, milestones){
+    var first=new Date(year,month,1).getDay();
+    var days=new Date(year,month+1,0).getDate();
+    var html='<tr><th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th></tr><tr>';
+    for(var i=0;i<first;i++) html+='<td></td>';
+    for(var d=1;d<=days;d++){
+      var dow=(first+d-1)%7;
+      if(dow===0&&d!==1) html+='</tr><tr>';
+      var inRange = d>=range[0]&&d<=range[1];
+      var m = milestones[d];
+      if(m) html+='<td class="milestone"><span class="d">'+d+'</span><span class="tag">'+m+'</span></td>';
+      else html+='<td class="'+(inRange?'':'dim')+'">'+d+'</td>';
+    }
+    html+='</tr>';
+    document.getElementById(id).innerHTML=html;
+  }
+  buildCal('cal-jul',2026,6,[22,31],{22:'언팩',28:'사전예약'});
+  buildCal('cal-aug',2026,7,[1,7],{4:'사전개통',7:'정식출시'});
+</script>
+</body>
+</html>
