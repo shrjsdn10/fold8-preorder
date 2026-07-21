@@ -3,19 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>갤럭시 폴드8 사전예약 알림 | 폰스팟</title>
+<title>갤럭시 Z 폴드 8 사전예약 알림 | 폰스팟</title>
 <style>
   :root{
     --navy-deep:#050a1a; --navy:#0a1330; --navy-card:#101c42;
     --blue:#2f6bff; --blue-glow:#3d8bff; --cyan:#5ac8ff;
-    --white:#f4f7ff; --grey:#8b96b8; --kakao:#FEE500; --kakao-txt:#191600;
+    --white:#f4f7ff; --grey:#c7d3f0; --kakao:#FEE500; --kakao-txt:#191600;
     --radius:18px;
   }
   *{margin:0;padding:0;box-sizing:border-box;font-family:'Pretendard','Apple SD Gothic Neo','Noto Sans KR',sans-serif;}
   html,body{background:#02040c;}
   body{display:flex;justify-content:center;}
   /* 모바일 전용 컨테이너 */
-  .page{width:100%;max-width:420px;min-height:100vh;background:linear-gradient(180deg,var(--navy-deep) 0%,var(--navy) 40%,#071026 100%);color:var(--white);overflow-x:hidden;padding-bottom:96px;}
+  .page{width:100%;max-width:420px;min-height:100vh;background:linear-gradient(180deg,var(--navy-deep) 0%,var(--navy) 40%,#071026 100%);color:var(--white);overflow-x:hidden;padding-top:72px;}
   section{padding:34px 20px;}
   .sec-label{display:inline-block;font-size:12px;font-weight:700;color:var(--cyan);background:rgba(61,139,255,.12);border:1px solid rgba(61,139,255,.35);padding:5px 12px;border-radius:999px;margin-bottom:14px;letter-spacing:.5px;}
   .sec-eyebrow{font-size:13px;color:var(--grey);margin-bottom:4px;}
@@ -31,6 +31,7 @@
   /* ① HERO (언팩 티저 이미지 + 텍스트 오버레이) */
   .hero{position:relative;text-align:center;padding:0;background:#d4d4d1;}
   .hero-bg{display:block;width:100%;height:auto;}
+  .hero-image-link{display:block;text-decoration:none;}
   .hero-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;padding:34px 24px 30px;}
   .model-chips{font-size:15px;font-weight:600;color:#333;letter-spacing:.3px;margin-bottom:10px;}
   .hero h1{font-size:33px;font-weight:900;line-height:1.28;color:#0d0d0d;letter-spacing:-.5px;}
@@ -47,7 +48,7 @@
   .lu-fade{object-fit:cover;border-radius:9px;filter:none;
     -webkit-mask-image:radial-gradient(ellipse 72% 72% at 50% 50%,#000 52%,transparent 97%);
     mask-image:radial-gradient(ellipse 72% 72% at 50% 50%,#000 52%,transparent 97%);}
-  .lu-name{display:block;font-size:12.5px;font-weight:800;margin:8px 0 2px;}
+  .lu-name{display:flex;min-height:32px;align-items:center;justify-content:center;font-size:12px;line-height:1.35;font-weight:800;margin:8px 0 2px;word-break:keep-all;}
   .lu-new{display:inline-block;font-size:9px;font-weight:800;color:#0a1330;background:linear-gradient(90deg,#7db4ff,#5ac8ff);padding:2px 7px;border-radius:999px;margin-bottom:6px;}
   .lu-expand-hint{display:block;position:relative;width:42px;height:24px;margin:5px auto 0;transition:transform .28s ease;}
   .lu-expand-hint::before{content:"";position:absolute;left:50%;top:5px;width:13px;height:13px;border-right:2px solid var(--cyan);border-bottom:2px solid var(--cyan);transform:translateX(-50%) rotate(45deg);filter:drop-shadow(0 2px 4px rgba(90,200,255,.55));}
@@ -86,9 +87,17 @@
   .soon-card .t{font-size:14.5px;font-weight:800;margin-bottom:4px;}
   .soon-card .d{font-size:12.5px;color:var(--grey);line-height:1.55;}
   .soon-card .d b{color:#7db4ff;}
-  .storage-card{position:relative;overflow:hidden;background:linear-gradient(145deg,#eef0f8,#d9d9e7);color:#101322;border-radius:18px;padding:22px 18px 20px;margin:16px 0;min-height:250px;}
+  .benefit-card{background:linear-gradient(155deg,#16264f,#0d1738);border-color:rgba(61,139,255,.38);border-radius:18px;padding:18px;text-align:left;box-shadow:0 10px 24px rgba(0,0,0,.16);margin-top:14px;}
+  .benefit-card+.benefit-card{margin-top:16px;}
+  .benefit-visual{width:100%;height:auto;aspect-ratio:4/3;overflow:hidden;border-radius:13px;background:linear-gradient(135deg,rgba(47,107,255,.34),rgba(90,200,255,.09));display:flex;align-items:center;justify-content:center;font-size:48px;margin-bottom:15px;box-shadow:inset 0 1px 0 rgba(255,255,255,.04);}
+  .benefit-visual img{width:100%;height:100%;display:block;object-fit:cover;}
+  .benefit-card .cat-label{margin:0 0 10px;font-size:18px;}
+  .benefit-card .cat-label .n{width:25px;height:25px;background:#fff;color:#08122d;font-size:12px;box-shadow:none;}
+  .benefit-card .d{font-size:16px;line-height:1.65;text-align:left;}
+  .benefit-card .status{display:inline-block;color:#fff;font-weight:900;margin-right:4px;}
+  .storage-card{position:relative;overflow:hidden;background:linear-gradient(145deg,#eef0f8,#d9d9e7);color:#101322;border-radius:18px;padding:22px 18px 125px;margin:16px 0;min-height:300px;}
   .storage-card h3{font-size:22px;line-height:1.2;letter-spacing:-.6px;margin-bottom:9px;}
-  .storage-card p{font-size:12.5px;line-height:1.5;color:#41465c;max-width:250px;}
+  .storage-card p{font-size:12.5px;line-height:1.5;color:#41465c;max-width:none;}
   .storage-visual{position:absolute;right:18px;bottom:18px;width:165px;height:103px;border-radius:28px;background:linear-gradient(145deg,#a598ff,#684de2 62%,#4d35bf);box-shadow:0 15px 30px rgba(82,58,190,.28);transform:rotate(-4deg);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-shadow:0 2px 8px rgba(36,20,112,.4);}
   .storage-visual .x2{font-size:19px;font-weight:900;opacity:.82;}
   .storage-visual .capacity{font-size:29px;font-weight:900;letter-spacing:-1px;}
@@ -96,21 +105,23 @@
   .storage-up{position:absolute;right:-7px;top:-7px;width:42px;height:42px;border-radius:50%;background:#62cc7a;color:#fff;font-size:25px;font-weight:900;display:flex;align-items:center;justify-content:center;box-shadow:0 5px 12px rgba(26,115,54,.3);}
 
   /* ⑥ 일정/절차 */
-  .schedule-flow{background:var(--navy-card);border:1px solid rgba(61,139,255,.25);border-radius:18px;padding:18px 8px 15px;margin-top:16px;overflow:hidden;}
-  .mini-cal{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:2px;}
-  .cal-day{text-align:center;font-size:10.5px;font-weight:800;color:#aab7d8;padding-bottom:9px;border-bottom:1px solid rgba(120,145,200,.28);}
-  .cal-date{position:relative;min-height:56px;text-align:center;padding-top:8px;border-radius:8px;color:#f4f7ff;font-size:14px;font-weight:900;}
+  .schedule-section{padding-left:12px;padding-right:12px;}
+  .schedule-section>h2{font-size:28px;white-space:nowrap;letter-spacing:-1.1px;}
+  .schedule-flow{background:var(--navy-card);border:1px solid rgba(61,139,255,.25);border-radius:20px;padding:22px 9px 19px;margin-top:18px;overflow:hidden;}
+  .mini-cal{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px;}
+  .cal-day{text-align:center;font-size:14px;font-weight:800;color:#aab7d8;padding-bottom:12px;border-bottom:1px solid rgba(120,145,200,.28);}
+  .cal-date{position:relative;min-height:68px;text-align:center;padding-top:10px;border-radius:9px;color:#f4f7ff;font-size:18px;font-weight:900;}
   .cal-date.dim{color:#414c70;}
   .cal-date.reserve{background:rgba(72,142,255,.2);}
   .cal-date.open-period{background:rgba(75,196,105,.16);}
   .cal-date.launch-period{background:rgba(255,90,100,.16);}
-  .cal-date .month{font-size:9px;color:#a2afd0;margin-right:1px;}
-  .cal-date .mark{display:flex;align-items:center;justify-content:center;width:30px;height:30px;margin:-3px auto 0;border-radius:50%;background:#2d61ff;color:#fff;box-shadow:0 0 12px rgba(47,107,255,.45);}
+  .cal-date .month{font-size:12px;color:#a2afd0;margin-right:1px;}
+  .cal-date .mark{display:flex;align-items:center;justify-content:center;width:34px;height:34px;margin:-4px auto 0;border-radius:50%;background:#2d61ff;color:#fff;box-shadow:0 0 12px rgba(47,107,255,.45);}
   .cal-date.green .mark{background:#34b653;box-shadow:0 0 12px rgba(52,182,83,.38);}
   .cal-date.red .mark{background:#ee3d49;box-shadow:0 0 12px rgba(238,61,73,.38);}
-  .cal-date .event{display:block;margin-top:3px;font-size:8.5px;line-height:1.2;color:#b8cbff;font-weight:800;word-break:keep-all;letter-spacing:-.35px;}
+  .cal-date .event{display:block;margin-top:4px;font-size:11px;line-height:1.2;color:#b8cbff;font-weight:800;word-break:keep-all;letter-spacing:-.55px;}
   .cal-date.green .event{color:#8ee6a2;}.cal-date.red .event{color:#ffa1a7;}
-  .cal-legend{display:flex;justify-content:center;gap:12px;margin-top:13px;font-size:10px;font-weight:700;color:#a5b0ce;}
+  .cal-legend{display:flex;justify-content:center;gap:12px;margin-top:14px;font-size:12px;font-weight:700;color:#a5b0ce;}
   .cal-legend span::before{content:"";display:inline-block;width:7px;height:7px;border-radius:2px;margin-right:4px;background:#4c8eff;}
   .cal-legend .opening::before{background:#4bc469;}.cal-legend .launching::before{background:#ff5a64;}
   .schedule-note{font-size:10.5px;color:#69769b;text-align:center;margin-top:14px;}
@@ -118,16 +129,24 @@
   .process-scroll{display:flex;gap:11px;overflow-x:auto;padding:6px 2px 12px;scroll-snap-type:x mandatory;scrollbar-width:none;}
   .process-scroll::-webkit-scrollbar{display:none;}
   .process-card{flex:0 0 82%;scroll-snap-align:start;background:linear-gradient(155deg,#16264f,#0d1738);border:1px solid rgba(61,139,255,.28);border-radius:16px;padding:18px;}
-  .process-card .visual{height:112px;border-radius:12px;background:linear-gradient(135deg,rgba(47,107,255,.3),rgba(90,200,255,.08));display:flex;align-items:center;justify-content:center;font-size:45px;margin-bottom:14px;}
+  .process-card .visual{width:100%;height:auto;aspect-ratio:4/3;overflow:hidden;border-radius:12px;background:linear-gradient(135deg,rgba(47,107,255,.3),rgba(90,200,255,.08));display:flex;align-items:center;justify-content:center;font-size:45px;margin-bottom:14px;}
+  .process-card .visual img{width:100%;height:100%;display:block;object-fit:cover;}
   .process-card .step-no{display:inline-flex;width:24px;height:24px;border-radius:50%;align-items:center;justify-content:center;background:#fff;color:#08122d;font-size:12px;font-weight:900;margin-right:7px;}
   .process-card h3{display:inline;font-size:15px;line-height:1.4;}
   .process-card p{font-size:12px;line-height:1.55;color:var(--grey);margin-top:9px;}
   .process-hint{text-align:center;font-size:10.5px;color:#69769b;margin-top:2px;}
+  .process-nav{display:grid;grid-template-columns:38px 1fr 38px;align-items:center;gap:10px;margin-top:3px;}
+  .process-nav .process-hint{margin:0;}
+  .process-arrow{width:38px;height:38px;border:1px solid rgba(90,200,255,.42);border-radius:11px;background:linear-gradient(145deg,rgba(47,107,255,.2),rgba(90,200,255,.08));color:#66d1ff;font-size:29px;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s,border-color .2s,transform .2s,opacity .2s;}
+  .process-arrow:hover:not(:disabled){background:rgba(61,139,255,.3);border-color:#66d1ff;transform:translateY(-1px);}
+  .process-arrow:focus-visible{outline:2px solid #66d1ff;outline-offset:2px;}
+  .process-arrow:disabled{opacity:.22;cursor:default;}
   .disclaim{font-size:11px;color:#5a6688;margin-top:12px;text-align:center;}
 
   /* ⑧ 후기 */
   .review{max-width:88%;background:#fff;color:#1a2440;border-radius:16px;padding:13px 16px;font-size:12.5px;line-height:1.55;margin-bottom:12px;}
   .review b{color:#2f6bff;}
+  .review .review-black{color:#111827;font-weight:900;}
   .review.right{margin-left:auto;background:#dcebff;}
   .review-note{font-size:10.5px;color:#5a6688;margin-bottom:14px;}
 
@@ -147,16 +166,127 @@
   /* 푸터 */
   footer{padding:30px 20px 50px;text-align:center;border-top:1px solid rgba(61,139,255,.15);}
   .sns{display:flex;justify-content:center;gap:12px;margin:16px 0;}
-  .sns a{width:42px;height:42px;border-radius:50%;background:rgba(61,139,255,.12);border:1px solid rgba(61,139,255,.3);display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:18px;}
+  .sns a{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:transform .2s,box-shadow .2s;}
+  .sns a:hover{transform:translateY(-2px);box-shadow:0 7px 16px rgba(0,0,0,.28);}
+  .sns svg{display:block;width:30px;height:30px;}
   .foot-info{font-size:11px;color:#5a6688;line-height:1.7;}
 
   /* 스티키 카운트다운 바 */
-  .sticky-bar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:420px;background:rgba(4,8,22,.96);backdrop-filter:blur(8px);border-top:1px solid rgba(61,139,255,.35);display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px;z-index:99;}
+  .sticky-bar{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:420px;background:rgba(4,8,22,.96);backdrop-filter:blur(8px);border-bottom:1px solid rgba(61,139,255,.35);display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px;z-index:99;}
   .sb-left .sb-t{font-size:11px;font-weight:700;color:var(--grey);margin-bottom:2px;}
   .sb-count{display:flex;align-items:baseline;gap:3px;font-weight:900;}
   .sb-count .n{font-size:20px;color:#fff;}
   .sb-count .u{font-size:10px;color:var(--grey);margin-right:4px;}
   .sb-btn{flex-shrink:0;background:linear-gradient(90deg,#2f6bff,#3d8bff);color:#fff;font-size:14px;font-weight:800;border-radius:12px;padding:13px 18px;text-decoration:none;box-shadow:0 0 18px rgba(61,139,255,.45);}
+
+  /* 페이지 전체 가독성 강화: 섹션 타이틀·본문 크기 통일 */
+  section > h2{font-size:30px;line-height:1.28;letter-spacing:-.7px;margin-bottom:10px;word-break:keep-all;}
+  .sub,.spec-status,.spec-row,.soon-card .d,.storage-card p,
+  .process-card p,.review,.acc-body{font-size:16px;line-height:1.65;}
+  .sec-eyebrow{font-size:15px;}
+  .spec-name,.process-card h3,.soon-card .t,summary{font-size:18px;line-height:1.45;}
+  .cat-label{font-size:17px;}
+  .storage-card h3{font-size:27px;line-height:1.25;}
+  .review-note,.lu-disclaim,.schedule-note,.process-hint,.disclaim,.cta-note{font-size:12px;line-height:1.5;}
+
+  /* 배경과 패널의 명도 차이를 강화한 컬러 시스템 */
+  html,body{background:#01030a;}
+  .page{background:linear-gradient(180deg,#030817 0%,#07122c 42%,#040b1d 100%);}
+  section:nth-of-type(even):not(.hero):not(.final){background:rgba(18,38,82,.16);}
+  .lu-card,details{
+    background:linear-gradient(155deg,#172d63,#10224e);
+    border-color:rgba(90,200,255,.42);
+    box-shadow:0 9px 22px rgba(0,0,0,.22),inset 0 1px 0 rgba(255,255,255,.035);
+  }
+  .spec-stage{
+    background:linear-gradient(155deg,#1b3570,#0f204b);
+    border-color:#63d1ff;
+    box-shadow:0 14px 32px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.05),0 0 18px rgba(61,139,255,.2);
+  }
+  .spec-status{background:#102653;border:1px solid rgba(90,200,255,.18);}
+  .schedule-flow{
+    background:linear-gradient(155deg,#183268,#10234f);
+    border-color:rgba(90,200,255,.48);
+    box-shadow:0 12px 28px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.04);
+  }
+  .process-card,.benefit-card{
+    background:linear-gradient(150deg,#1a3470 0%,#10234f 100%);
+    border-color:rgba(90,200,255,.5);
+    box-shadow:0 12px 28px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.045);
+  }
+  .process-card .visual,.benefit-visual{
+    background:linear-gradient(135deg,#284a93,#18366f);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 8px 18px rgba(1,6,22,.2);
+  }
+  .soon-card:not(.benefit-card){background:#152d61;border-color:rgba(90,200,255,.42);}
+  .divider{background:linear-gradient(90deg,transparent,rgba(90,200,255,.52),transparent);}
+
+  /* 페이지 전체 세로 여백과 콘텐츠 호흡 */
+  section:not(.hero){padding-top:52px;padding-bottom:52px;}
+  section>h2{margin-bottom:16px;}
+  .sec-label{margin-bottom:18px;}
+  .sec-eyebrow{margin-bottom:8px;}
+  .sub{margin-top:2px;margin-bottom:24px;}
+  .lineup-grid{margin-top:24px;margin-bottom:14px;}
+  .lineup-section{padding-left:12px!important;padding-right:12px!important;}
+  .lineup-section .lineup-grid{display:block;position:relative;margin-left:auto;margin-right:auto;max-width:360px;}
+  .lineup-section .lu-card{display:none;min-height:310px;padding:24px 20px 22px;}
+  .lineup-section .lu-card.selected{display:block;animation:lineupCardIn .28s ease;}
+  .lineup-section .lu-img{height:190px;}
+  .lineup-section .lu-img-flip{transform:translateY(9px);transform-origin:center center;}
+  .lineup-section .lu-img-fold{transform:translateY(8px) scale(1.14);transform-origin:center center;}
+  .lineup-section .lu-img-ultra{transform:translate(-6px,-3px) scale(1.28);transform-origin:center center;}
+  .lineup-section .lu-name{min-height:auto;margin-top:14px;font-size:18px;}
+  .lineup-section .lu-expand-hint{margin-top:8px;}
+  @keyframes lineupCardIn{from{opacity:.25;transform:translateX(10px)}to{opacity:1;transform:translateX(0)}}
+  .lineup-nav{display:flex;align-items:center;justify-content:center;gap:14px;margin:18px 0 8px;}
+  .lineup-arrow{width:42px;height:42px;border:1px solid rgba(90,200,255,.55);border-radius:12px;background:#142b5e;color:#fff;font-size:24px;line-height:1;cursor:pointer;box-shadow:0 6px 16px rgba(0,0,0,.2);}
+  .lineup-arrow:active{transform:scale(.96);}
+  .lineup-tabs{display:flex;gap:8px;}
+  .lineup-tab{width:12px;height:12px;padding:0;border:0;border-radius:999px;background:#53688f;cursor:pointer;transition:width .2s,background .2s;}
+  .lineup-tab.selected{width:30px;background:var(--cyan);}
+  .spec-stage{margin-top:26px;}
+  .storage-card{margin-top:24px;margin-bottom:24px;}
+  .benefit-card{margin-top:20px;}
+  .benefit-card+.benefit-card{margin-top:24px;}
+  .schedule-flow{margin-top:24px;}
+  .process-scroll{padding-top:14px;padding-bottom:18px;}
+  .process-nav{margin-top:10px;}
+  .review{margin-bottom:30px;}
+  .review:last-child{margin-bottom:0;}
+  details{margin-bottom:14px;}
+  .final .kakao-btn{margin-top:8px;}
+  .divider{margin-left:28px;margin-right:28px;}
+
+  /* 섹션 타이틀 디자인 통일 */
+  .sec-eyebrow,.sec-label,.process-kicker{
+    display:inline-flex;
+    align-items:center;
+    min-height:30px;
+    margin:0 0 14px;
+    padding:6px 12px;
+    border:1px solid rgba(90,200,255,.48);
+    border-radius:999px;
+    background:rgba(47,107,255,.13);
+    color:var(--cyan);
+    font-size:13px;
+    font-weight:800;
+    line-height:1;
+    letter-spacing:.25px;
+    text-align:left;
+  }
+  section>h2,.schedule-section>h2{
+    margin:0 0 16px;
+    font-size:30px;
+    font-weight:900;
+    line-height:1.28;
+    letter-spacing:-.8px;
+    text-align:left;
+    white-space:normal;
+    word-break:keep-all;
+  }
+  .lineup-section>.sec-eyebrow,.lineup-section>h2,.lineup-section>.sub,
+  .schedule-section>.sec-label,.schedule-section>h2{margin-left:8px;margin-right:8px;}
 </style>
 </head>
 <body>
@@ -164,47 +294,53 @@
 
   <!-- ① 히어로 (언팩 티저 이미지 + 텍스트 오버레이) -->
   <section class="hero">
-    <img class="hero-bg" src="assets/갤럭시 언팩 이미지 세로형.png" alt="Galaxy Unpacked 티저">
-    <div class="hero-overlay">
-      <div class="model-chips">Galaxy Z Fold 8 | Z Flip 8</div>
-      <h1>폰스팟 사전예약<br>알림 신청</h1>
-      <a class="hero-cta" href="https://pf.kakao.com/_hZPcG/friend" target="_blank">알림 신청하기</a>
-    </div>
+    <a class="hero-image-link" href="https://pf.kakao.com/_hZPcG/friend" target="_blank" aria-label="카카오톡으로 사전예약 알림 신청하기">
+      <img class="hero-bg" src="assets/preorder-littly-hero.png" alt="Galaxy Z Fold 8 및 Z Flip 8 폰스팟 사전예약 알림 신청">
+    </a>
   </section>
 
   <div class="divider"></div>
 
   <!-- ② 라인업 미리보기 -->
-  <section>
+  <section class="lineup-section">
     <p class="sec-eyebrow">Coming Soon</p>
-    <h2>폴드8 시리즈 역대급 라인업<br>미리 만나보세요</h2>
-    <p class="sub">라인업부터 확인하고, 원하는 모델의 소식을 가장 먼저 받아보세요.</p>
+    <h2>Galaxy Z Fold 8 Series<br>미리 만나보세요</h2>
+    <p class="sub">라인업부터 확인하고, 소식을 가장 먼저 받아보세요.</p>
     <div class="lineup-grid">
-      <div class="lu-card">
+      <div class="lu-card selected">
         <button class="lu-select" type="button" data-spec="flip8" aria-expanded="false" aria-controls="spec-stage">
-          <img class="lu-img" data-cut="assets/갤럭시 플립 8_2.jpg" data-crop="0,0.02,1,0.96" alt="갤럭시 플립8 예상 렌더">
-          <span class="lu-name">갤럭시 플립8</span>
+          <img class="lu-img lu-img-flip" src="assets/galaxy-z-flip8-folded-concept-v2.png" alt="갤럭시 Z 플립 8 접힌 상태 콘셉트 렌더">
+          <span class="lu-name">갤럭시 Z 플립 8</span>
           <span class="lu-expand-hint" aria-hidden="true"></span>
         </button>
       </div>
       <div class="lu-card">
         <button class="lu-select" type="button" data-spec="fold8" aria-expanded="false" aria-controls="spec-stage">
-          <img class="lu-img lu-fade" data-cut="assets/갤럭시 폴드 8_와이드.jpg" data-t="0" data-patch="0.17,0.485,0.55,0.075" alt="갤럭시 폴드8 예상 렌더">
-          <span class="lu-name">갤럭시 폴드8</span>
+          <img class="lu-img lu-img-fold" src="assets/galaxy-z-fold8-front-rear-composite.png" alt="갤럭시 Z 폴드 8 정면 및 후면 콘셉트 렌더">
+          <span class="lu-name">갤럭시 Z 폴드 8</span>
           <span class="lu-expand-hint" aria-hidden="true"></span>
         </button>
       </div>
       <div class="lu-card">
         <button class="lu-select" type="button" data-spec="ultra" aria-expanded="false" aria-controls="spec-stage">
-          <img class="lu-img" data-cut="assets/갤럭시 폴드 8_2.webp" alt="갤럭시 폴드8 울트라 예상 렌더">
-          <span class="lu-name">폴드8 울트라</span>
+          <img class="lu-img lu-img-ultra" data-cut="assets/갤럭시 폴드 8_2.webp" alt="갤럭시 Z 폴드 8 울트라 예상 렌더">
+          <span class="lu-name">갤럭시 Z 폴드 8 울트라</span>
           <span class="lu-expand-hint" aria-hidden="true"></span>
         </button>
       </div>
     </div>
+    <div class="lineup-nav" aria-label="기종 선택">
+      <button class="lineup-arrow lineup-prev" type="button" aria-label="이전 기종">&#8249;</button>
+      <div class="lineup-tabs">
+        <button class="lineup-tab selected" type="button" data-index="0" aria-label="갤럭시 Z 플립 8 선택"></button>
+        <button class="lineup-tab" type="button" data-index="1" aria-label="갤럭시 Z 폴드 8 선택"></button>
+        <button class="lineup-tab" type="button" data-index="2" aria-label="갤럭시 Z 폴드 8 울트라 선택"></button>
+      </div>
+      <button class="lineup-arrow lineup-next" type="button" aria-label="다음 기종">&#8250;</button>
+    </div>
     <div class="spec-stage" id="spec-stage" aria-live="polite">
       <div class="spec-panel" data-panel="flip8">
-        <div class="spec-head"><span class="spec-badge">FLIP</span><span class="spec-name">갤럭시 Z Flip8 상세 스펙</span><button class="spec-close" type="button" aria-label="상세 스펙 닫기">×</button></div>
+        <div class="spec-head"><span class="spec-badge">FLIP</span><span class="spec-name">갤럭시 Z 플립 8 상세 스펙</span><button class="spec-close" type="button" aria-label="상세 스펙 닫기">×</button></div>
         <div class="spec-body">
           <p class="spec-status">공식 발표 전 제품입니다. 7월 22일 언팩 발표 후 확정 사양으로 업데이트됩니다.</p>
           <div class="spec-row"><span class="key">디스플레이</span><span class="value">공식 발표 후 업데이트</span></div>
@@ -212,11 +348,11 @@
           <div class="spec-row"><span class="key">카메라</span><span class="value">공식 발표 후 업데이트</span></div>
           <div class="spec-row"><span class="key">배터리</span><span class="value">공식 발표 후 업데이트</span></div>
           <div class="spec-row"><span class="key">크기·무게</span><span class="value">공식 발표 후 업데이트</span></div>
-          <a class="kakao-btn spec-cta" href="https://pf.kakao.com/_hZPcG/friend" target="_blank"><span>💬</span>갤럭시 Z Flip8 알림 신청</a>
+          <a class="kakao-btn spec-cta" href="https://pf.kakao.com/_hZPcG/friend" target="_blank"><span>💬</span>갤럭시 Z 플립 8 알림 신청</a>
         </div>
       </div>
       <div class="spec-panel" data-panel="fold8">
-        <div class="spec-head"><span class="spec-badge">FOLD</span><span class="spec-name">갤럭시 Z Fold8 상세 스펙</span><button class="spec-close" type="button" aria-label="상세 스펙 닫기">×</button></div>
+        <div class="spec-head"><span class="spec-badge">FOLD</span><span class="spec-name">갤럭시 Z 폴드 8 상세 스펙</span><button class="spec-close" type="button" aria-label="상세 스펙 닫기">×</button></div>
         <div class="spec-body">
           <p class="spec-status">공식 발표 전 제품입니다. 7월 22일 언팩 발표 후 확정 사양으로 업데이트됩니다.</p>
           <div class="spec-row"><span class="key">디스플레이</span><span class="value">공식 발표 후 업데이트</span></div>
@@ -224,20 +360,19 @@
           <div class="spec-row"><span class="key">카메라</span><span class="value">공식 발표 후 업데이트</span></div>
           <div class="spec-row"><span class="key">배터리</span><span class="value">공식 발표 후 업데이트</span></div>
           <div class="spec-row"><span class="key">크기·무게</span><span class="value">공식 발표 후 업데이트</span></div>
-          <a class="kakao-btn spec-cta" href="https://pf.kakao.com/_hZPcG/friend" target="_blank"><span>💬</span>갤럭시 Z Fold8 알림 신청</a>
+          <a class="kakao-btn spec-cta" href="https://pf.kakao.com/_hZPcG/friend" target="_blank"><span>💬</span>갤럭시 Z 폴드 8 알림 신청</a>
         </div>
       </div>
       <div class="spec-panel" data-panel="ultra">
-        <div class="spec-head"><span class="spec-badge">ULTRA</span><span class="spec-name">갤럭시 Z Fold8 Ultra 상세 스펙</span><button class="spec-close" type="button" aria-label="상세 스펙 닫기">×</button></div>
+        <div class="spec-head"><span class="spec-badge">ULTRA</span><span class="spec-name">갤럭시 Z 폴드 8 울트라 상세 스펙</span><button class="spec-close" type="button" aria-label="상세 스펙 닫기">×</button></div>
         <div class="spec-body">
-          <p class="spec-status">모델명과 출시 여부를 포함한 공식 정보가 아직 공개되지 않았습니다. 언팩 발표 후 업데이트됩니다.</p>
-          <div class="spec-row"><span class="key">출시 여부</span><span class="value">공식 발표 후 확인</span></div>
+          <p class="spec-status">공식 발표 전 제품입니다. 7월 22일 언팩 발표 후 확정 사양으로 업데이트됩니다.</p>
           <div class="spec-row"><span class="key">디스플레이</span><span class="value">공식 발표 후 업데이트</span></div>
           <div class="spec-row"><span class="key">프로세서</span><span class="value">공식 발표 후 업데이트</span></div>
           <div class="spec-row"><span class="key">카메라</span><span class="value">공식 발표 후 업데이트</span></div>
           <div class="spec-row"><span class="key">배터리</span><span class="value">공식 발표 후 업데이트</span></div>
           <div class="spec-row"><span class="key">크기·무게</span><span class="value">공식 발표 후 업데이트</span></div>
-          <a class="kakao-btn spec-cta" href="https://pf.kakao.com/_hZPcG/friend" target="_blank"><span>💬</span>갤럭시 Z Fold8 Ultra 알림 신청</a>
+          <a class="kakao-btn spec-cta" href="https://pf.kakao.com/_hZPcG/friend" target="_blank"><span>💬</span>갤럭시 Z 폴드 8 울트라 알림 신청</a>
         </div>
       </div>
     </div>
@@ -252,27 +387,27 @@
     <h2>사전예약하면 이만큼 받아요</h2>
     <div class="storage-card">
       <h3>256GB 가격으로<br>512GB 용량 업그레이드</h3>
-      <p>삼성전자 사전예약 혜택 발표 시 적용 모델과 조건을 정확하게 업데이트합니다.</p>
-      <div class="storage-visual" aria-hidden="true"><span class="x2">×2</span><span class="capacity">512GB</span><span class="from">256GB → 512GB</span><span class="storage-up">↑</span></div>
+      <p>삼성전자 사전예약 혜택 발표 시 적용 모델과 조건을 업데이트합니다.</p>
+      <div class="storage-visual" aria-hidden="true"><span class="from">256GB</span><span class="capacity">512GB</span><span class="x2">X2</span><span class="storage-up">↑</span></div>
     </div>
-    <div class="cat-label"><span class="n">1</span>삼성 제조사 혜택</div>
-    <div class="soon-card">
-      <div class="t">공개 예정 🔒</div>
-      <div class="d">7월 22일 언팩에서 공식 발표되는 즉시<br>이 자리에 제조사 혜택을 업데이트합니다.</div>
+    <div class="soon-card benefit-card">
+      <div class="benefit-visual"><img src="assets/page-material-1.png" alt="삼성 제조사 혜택 안내 이미지"></div>
+      <div class="cat-label"><span class="n">1</span>삼성 제조사 혜택</div>
+      <div class="d"><span class="status">공개 예정</span> 7월 22일 언팩에서 공식 발표되는 즉시 이 자리에 제조사 혜택을 업데이트합니다.</div>
     </div>
-    <div class="cat-label"><span class="n">2</span>폰스팟 단독 혜택</div>
-    <div class="soon-card">
-      <div class="t">준비 중 🎁</div>
-      <div class="d">출고가 공개 즉시 <b>폰스팟 사전예약가</b>와 함께<br>단독 혜택을 안내드립니다.</div>
+    <div class="soon-card benefit-card">
+      <div class="benefit-visual"><img src="assets/page-material-2.png" alt="폰스팟 단독 혜택 안내 이미지"></div>
+      <div class="cat-label"><span class="n">2</span>폰스팟 단독 혜택</div>
+      <div class="d"><span class="status">준비 중</span> 출고가 공개 즉시 <b>폰스팟 사전예약가</b>와 함께 단독 혜택을 안내드립니다.</div>
     </div>
   </section>
 
   <div class="divider"></div>
 
   <!-- ⑥ 사전예약 일정 -->
-  <section>
+  <section class="schedule-section">
     <span class="sec-label">사전예약 일정 (예상)</span>
-    <h2>한눈에 보는<br>사전예약 일정</h2>
+    <h2>한눈에 보는 사전예약 일정</h2>
     <div class="schedule-flow">
       <div class="mini-cal" aria-label="2026년 7월과 8월 사전예약 일정">
         <div class="cal-day">일</div><div class="cal-day">월</div><div class="cal-day">화</div><div class="cal-day">수</div><div class="cal-day">목</div><div class="cal-day">금</div><div class="cal-day">토</div>
@@ -290,15 +425,19 @@
   <!-- ⑦ 온라인 사전예약 진행 절차 -->
   <section>
     <p class="process-kicker">PROCESS</p>
-    <h2 style="text-align:center">손쉬운 온라인 사전예약<br>진행 절차 안내</h2>
+    <h2>손쉬운 온라인 사전예약<br>진행 절차 안내</h2>
     <div class="process-scroll">
-      <article class="process-card"><div class="visual">🔔</div><span class="step-no">1</span><h3>사전예약 알림 신청</h3><p>카카오 채널을 추가하고 원하는 모델의 알림을 신청합니다.</p></article>
-      <article class="process-card"><div class="visual">💬</div><span class="step-no">2</span><h3>예약 시작 안내 확인</h3><p>공식 사전예약이 시작되면 카카오톡으로 일정과 신청 방법을 안내받습니다.</p></article>
-      <article class="process-card"><div class="visual">📝</div><span class="step-no">3</span><h3>상담 및 신청서 작성</h3><p>가입 유형, 요금제, 배송 또는 수령 방법을 상담한 뒤 신청서를 작성합니다.</p></article>
-      <article class="process-card"><div class="visual">📲</div><span class="step-no">4</span><h3>개통 진행 확인</h3><p>신청 내용 확인 후 개통을 진행하며 주요 상태를 안내받습니다.</p></article>
-      <article class="process-card"><div class="visual">📦</div><span class="step-no">5</span><h3>기기 수령 및 사용</h3><p>개통 완료 후 안내된 방법에 따라 택배 또는 매장에서 기기를 수령합니다.</p></article>
+      <article class="process-card"><div class="visual"><img src="assets/page-material-3.png" alt="카카오톡 채널 추가"></div><span class="step-no">1</span><h3>사전예약 알림 신청</h3><p>카카오 채널을 추가하고 원하는 모델의 알림을 신청합니다.</p></article>
+      <article class="process-card"><div class="visual"><img src="assets/page-material-4.png" alt="사전예약 시작 안내 메시지"></div><span class="step-no">2</span><h3>예약 시작 안내 확인</h3><p>공식 사전예약이 시작되면 카카오톡으로 일정과 신청 방법을 안내받습니다.</p></article>
+      <article class="process-card"><div class="visual"><img src="assets/page-material-5.png" alt="갤럭시 Z 폴드 8 울트라 사전예약 신청서 작성"></div><span class="step-no">3</span><h3>상담 및 신청서 작성</h3><p>가입 유형, 요금제, 배송 또는 수령 방법을 상담한 뒤 신청서를 작성합니다.</p></article>
+      <article class="process-card"><div class="visual"><img src="assets/page-material-6.png" alt="사전예약 완료 및 개통 진행 안내"></div><span class="step-no">4</span><h3>개통 진행 확인</h3><p>신청 내용 확인 후 개통을 진행하며 주요 상태를 안내받습니다.</p></article>
+      <article class="process-card"><div class="visual"><img src="assets/page-material-7.png" alt="기기 배송 및 수령"></div><span class="step-no">5</span><h3>기기 수령 및 사용</h3><p>개통 완료 후 안내된 방법에 따라 택배 또는 매장에서 기기를 수령합니다.</p></article>
     </div>
-    <p class="process-hint">옆으로 밀어 전체 절차를 확인하세요 →</p>
+    <div class="process-nav">
+      <button class="process-arrow process-prev" type="button" aria-label="이전 절차 보기">‹</button>
+      <p class="process-hint">버튼 또는 좌우 스크롤로 전체 절차를 확인하세요</p>
+      <button class="process-arrow process-next" type="button" aria-label="다음 절차 보기">›</button>
+    </div>
   </section>
 
   <div class="divider"></div>
@@ -307,10 +446,9 @@
   <section>
     <p class="sec-eyebrow">실제 구매 고객분들은</p>
     <h2>이렇게 이야기합니다</h2>
-    <p class="review-note">* 폰스팟에서 구매하신 고객님들의 실제 후기입니다</p>
-    <div class="review">😍 폴드7 살 때 여러 곳 비교해봤는데,<br><b>폰스팟이 상담도 꼼꼼하고 조건이 제일 좋았어요.</b></div>
-    <div class="review right">🥰 바빠서 반신반의하며 온라인으로 신청했는데,<br><b>생각보다 훨씬 간편하고 빨랐어요~</b></div>
-    <div class="review">❤️ 시세조회 해보고 그 가격 그대로 진행했어요.<br><b>부가서비스 조건 없어서 좋았습니다!</b></div>
+    <div class="review"><strong class="review-black">폴드6</strong> 살 때 여러 곳 비교해봤는데, <b>폰스팟이 상담도 꼼꼼하고 조건이 제일 좋았어요.</b> 😍</div>
+    <div class="review right">바빠서 <strong class="review-black">온라인으로</strong> 신청했는데, <b>생각보다 훨씬 간편하고 빨랐어요~</b> 🥰</div>
+    <div class="review"><strong class="review-black">시세조회</strong> 해보고 그 가격 그대로 진행했어요. <b>부가서비스 조건 없어서 좋았습니다!</b> ❤️</div>
   </section>
 
   <!-- ⑨ 파이널 CTA -->
@@ -346,8 +484,12 @@
   <!-- 푸터 -->
   <footer>
     <div class="sns">
-      <a href="https://www.instagram.com/phonespot.kr/" target="_blank" title="인스타그램">📷</a>
-      <a href="https://pf.kakao.com/_hZPcG/friend" target="_blank" title="카카오톡 채널">💬</a>
+      <a href="https://www.instagram.com/phonespot.kr/" target="_blank" title="인스타그램" aria-label="폰스팟 인스타그램">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><defs><radialGradient id="ig-gradient" cx="30%" cy="105%" r="125%"><stop offset="0" stop-color="#ffd600"/><stop offset=".28" stop-color="#ff7a00"/><stop offset=".52" stop-color="#ff0169"/><stop offset=".78" stop-color="#d300c5"/><stop offset="1" stop-color="#7638fa"/></radialGradient></defs><rect x="2" y="2" width="28" height="28" rx="8" fill="url(#ig-gradient)"/><rect x="8" y="8" width="16" height="16" rx="5" fill="none" stroke="#fff" stroke-width="2.2"/><circle cx="16" cy="16" r="4" fill="none" stroke="#fff" stroke-width="2.2"/><circle cx="22.2" cy="9.8" r="1.35" fill="#fff"/></svg>
+      </a>
+      <a href="https://pf.kakao.com/_hZPcG/friend" target="_blank" title="카카오톡 채널" aria-label="폰스팟 카카오톡 채널">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="14" fill="#FEE500"/><path d="M16 8.1c-5.3 0-9.6 3.35-9.6 7.48 0 2.62 1.72 4.91 4.32 6.25l-1.1 4.05c-.1.35.3.63.6.43l4.72-3.08c.35.04.7.06 1.06.06 5.3 0 9.6-3.35 9.6-7.71S21.3 8.1 16 8.1Z" fill="#191919"/></svg>
+      </a>
     </div>
     <p class="foot-info">폰스팟 (시티마켓)<br>문의: 카카오톡 채널 · 000-0000-0000<br>© PHONESPOT. All rights reserved.</p>
   </footer>
@@ -401,7 +543,25 @@
     var stage=document.getElementById('spec-stage');
     var selectors=document.querySelectorAll('.lu-select');
     var panels=document.querySelectorAll('.spec-panel');
+    var cards=document.querySelectorAll('.lineup-grid .lu-card');
+    var tabs=document.querySelectorAll('.lineup-tab');
+    var prev=document.querySelector('.lineup-prev');
+    var next=document.querySelector('.lineup-next');
+    var selectedIndex=0;
     var current='';
+    function selectCard(index){
+      var keepSpecsOpen=stage.classList.contains('open');
+      selectedIndex=(index+cards.length)%cards.length;
+      cards.forEach(function(card,i){card.classList.toggle('selected',i===selectedIndex);});
+      tabs.forEach(function(tab,i){
+        tab.classList.toggle('selected',i===selectedIndex);
+        tab.setAttribute('aria-current',i===selectedIndex?'true':'false');
+      });
+      if(keepSpecsOpen){
+        var selectedButton=cards[selectedIndex].querySelector('.lu-select');
+        openSpecs(selectedButton.getAttribute('data-spec'),selectedButton);
+      }
+    }
     function closeSpecs(){
       current='';
       stage.classList.remove('open');
@@ -411,21 +571,51 @@
       });
       panels.forEach(function(panel){panel.classList.remove('active');});
     }
+    function openSpecs(target,btn){
+      closeSpecs();
+      current=target;
+      btn.setAttribute('aria-expanded','true');
+      btn.closest('.lu-card').classList.add('active');
+      document.querySelector('.spec-panel[data-panel="'+target+'"]').classList.add('active');
+      stage.classList.add('open');
+    }
     selectors.forEach(function(btn){
       btn.addEventListener('click',function(){
         var target=btn.getAttribute('data-spec');
         if(current===target){closeSpecs();return;}
-        closeSpecs();
-        current=target;
-        btn.setAttribute('aria-expanded','true');
-        btn.closest('.lu-card').classList.add('active');
-        document.querySelector('.spec-panel[data-panel="'+target+'"]').classList.add('active');
-        stage.classList.add('open');
+        openSpecs(target,btn);
       });
     });
     document.querySelectorAll('.spec-close').forEach(function(btn){
       btn.addEventListener('click',closeSpecs);
     });
+    tabs.forEach(function(tab){
+      tab.addEventListener('click',function(){selectCard(Number(tab.getAttribute('data-index')));});
+    });
+    prev.addEventListener('click',function(){selectCard(selectedIndex-1);});
+    next.addEventListener('click',function(){selectCard(selectedIndex+1);});
+  })();
+
+  // 사전예약 절차 좌우 이동 버튼
+  (function(){
+    var track=document.querySelector('.process-scroll');
+    var prev=document.querySelector('.process-prev');
+    var next=document.querySelector('.process-next');
+    if(!track||!prev||!next) return;
+    function move(dir){
+      var card=track.querySelector('.process-card');
+      var gap=parseFloat(getComputedStyle(track).gap)||11;
+      track.scrollBy({left:dir*(card.getBoundingClientRect().width+gap),behavior:'smooth'});
+    }
+    function update(){
+      prev.disabled=track.scrollLeft<3;
+      next.disabled=track.scrollLeft+track.clientWidth>=track.scrollWidth-3;
+    }
+    prev.addEventListener('click',function(){move(-1);});
+    next.addEventListener('click',function(){move(1);});
+    track.addEventListener('scroll',update,{passive:true});
+    window.addEventListener('resize',update);
+    update();
   })();
 
   // 렌더 이미지 배경 제거 (클라이언트 누끼)
