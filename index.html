@@ -161,12 +161,12 @@
         <a class="lu-btn" href="https://pf.kakao.com/_hZPcG/friend" target="_blank">알림받기</a>
       </div>
       <div class="lu-card">
-        <img class="lu-img" data-cut="갤럭시 폴드 8_2.webp" data-crop="0.14,0.05,0.36,0.92" alt="갤럭시 폴드8 예상 렌더">
+        <img class="lu-img" data-cut="갤럭시 폴드 8_와이드.jpg" data-t="30" data-patch="0.17,0.485,0.55,0.075" alt="갤럭시 폴드8 예상 렌더">
         <div class="lu-name">갤럭시 폴드8</div>
         <a class="lu-btn" href="https://pf.kakao.com/_hZPcG/friend" target="_blank">알림받기</a>
       </div>
       <div class="lu-card">
-        <img class="lu-img" data-cut="갤럭시 폴드 8_2.webp" data-crop="0.30,0.12,0.70,0.88" alt="갤럭시 폴드8 울트라 예상 렌더">
+        <img class="lu-img" data-cut="갤럭시 폴드 8_2.webp" alt="갤럭시 폴드8 울트라 예상 렌더">
         <div class="lu-name">폴드8 울트라</div>
         <a class="lu-btn" href="https://pf.kakao.com/_hZPcG/friend" target="_blank">알림받기</a>
       </div>
@@ -388,10 +388,11 @@
 
   // 렌더 이미지 배경 제거 (클라이언트 누끼)
   (function(){
-    var T=52; // 배경 색 허용 오차
     document.querySelectorAll('img[data-cut]').forEach(function(el){
       var src=el.getAttribute('data-cut');
       var crop=(el.getAttribute('data-crop')||'0,0,1,1').split(',').map(Number);
+      var T=parseFloat(el.getAttribute('data-t')||'52'); // 배경 색 허용 오차
+      var patch=el.getAttribute('data-patch'); // 워터마크 띠 보정 영역
       var img=new Image();
       img.onload=function(){
         try{
@@ -403,6 +404,22 @@
           var ctx=c.getContext('2d');
           ctx.drawImage(img,sx,sy,sw,sh,0,0,w,h);
           var d=ctx.getImageData(0,0,w,h), p=d.data;
+          // 워터마크 띠: 위/아래 픽셀 수직 보간으로 메움
+          if(patch){
+            var pr=patch.split(',').map(Number);
+            var px0=Math.round(w*pr[0]), py0=Math.round(h*pr[1]);
+            var pw=Math.round(w*pr[2]), ph=Math.round(h*pr[3]);
+            var yA=Math.max(0,py0-3), yB=Math.min(h-1,py0+ph+3);
+            for(var yy=py0; yy<py0+ph; yy++){
+              var t=(yy-py0)/ph;
+              for(var xx=px0; xx<px0+pw; xx++){
+                var ia=(yA*w+xx)*4, ib=(yB*w+xx)*4, ii=(yy*w+xx)*4;
+                p[ii]=p[ia]*(1-t)+p[ib]*t;
+                p[ii+1]=p[ia+1]*(1-t)+p[ib+1]*t;
+                p[ii+2]=p[ia+2]*(1-t)+p[ib+2]*t;
+              }
+            }
+          }
           // 배경색: 네 모서리 평균
           var cs=[0,(w-1)*4,(h-1)*w*4,((h-1)*w+w-1)*4];
           var br=0,bg=0,bb=0;
