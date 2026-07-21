@@ -38,8 +38,8 @@
 
   /* ② 라인업 카드 */
   .lineup-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0 8px;}
-  .lu-card{background:var(--navy-card);border:1px solid rgba(61,139,255,.3);border-radius:14px;padding:14px 8px 12px;text-align:center;}
-  .lu-card svg{width:52px;height:70px;filter:drop-shadow(0 0 10px rgba(61,139,255,.45));}
+  .lu-card{background:var(--navy-card);border:1px solid rgba(61,139,255,.3);border-radius:14px;padding:10px 8px 12px;text-align:center;}
+  .lu-img{width:100%;height:78px;object-fit:cover;border-radius:9px;display:block;}
   .lu-name{font-size:12.5px;font-weight:800;margin:8px 0 2px;}
   .lu-new{display:inline-block;font-size:9px;font-weight:800;color:#0a1330;background:linear-gradient(90deg,#7db4ff,#5ac8ff);padding:2px 7px;border-radius:999px;margin-bottom:6px;}
   .lu-btn{display:block;font-size:11.5px;font-weight:800;color:#fff;background:linear-gradient(90deg,#2f6bff,#3d8bff);border-radius:9px;padding:8px 0;text-decoration:none;margin-top:8px;}
@@ -156,18 +156,17 @@
     <p class="sub">라인업부터 확인하고, 원하는 모델의 소식을 가장 먼저 받아보세요.</p>
     <div class="lineup-grid">
       <div class="lu-card">
-        <svg viewBox="0 0 40 60"><rect x="8" y="8" width="24" height="22" rx="5" fill="#0d1836" stroke="#3d8bff" stroke-width="1"/><rect x="8" y="30" width="24" height="22" rx="5" fill="#070e22" stroke="#3d8bff" stroke-width="1"/></svg>
+        <img class="lu-img" src="갤럭시 플립 8_1.jpg" alt="갤럭시 플립8 예상 렌더">
         <div class="lu-name">갤럭시 플립8</div>
         <a class="lu-btn" href="https://pf.kakao.com/_hZPcG/friend" target="_blank">알림받기</a>
       </div>
       <div class="lu-card">
-        <svg viewBox="0 0 40 60"><rect x="7" y="5" width="12" height="50" rx="4" fill="#0d1836" stroke="#3d8bff" stroke-width="1"/><rect x="19" y="5" width="12" height="50" rx="4" fill="#070e22" stroke="#3d8bff" stroke-width="1"/></svg>
+        <img class="lu-img" src="갤럭시 폴드 8_와이드.jpg" alt="갤럭시 폴드8 예상 렌더">
         <div class="lu-name">갤럭시 폴드8</div>
         <a class="lu-btn" href="https://pf.kakao.com/_hZPcG/friend" target="_blank">알림받기</a>
       </div>
       <div class="lu-card">
-        <div class="lu-new">NEW</div><br>
-        <svg viewBox="0 0 40 60" style="height:56px"><rect x="4" y="8" width="15" height="44" rx="4" fill="#0d1836" stroke="#5ac8ff" stroke-width="1.2"/><rect x="19" y="8" width="15" height="44" rx="4" fill="#070e22" stroke="#5ac8ff" stroke-width="1.2"/></svg>
+        <img class="lu-img" src="갤럭시 폴드 8_1.webp" alt="갤럭시 폴드8 울트라 예상 렌더">
         <div class="lu-name">폴드8 울트라</div>
         <a class="lu-btn" href="https://pf.kakao.com/_hZPcG/friend" target="_blank">알림받기</a>
       </div>
@@ -317,7 +316,7 @@
   <!-- 푸터 -->
   <footer>
     <div class="sns">
-      <a href="https://instagram.com/폰스팟" target="_blank" title="인스타그램">📷</a>
+      <a href="https://www.instagram.com/phonespot.kr/" target="_blank" title="인스타그램">📷</a>
       <a href="https://pf.kakao.com/_hZPcG/friend" target="_blank" title="카카오톡 채널">💬</a>
     </div>
     <p class="foot-info">폰스팟 (시티마켓)<br>문의: 카카오톡 채널 · 000-0000-0000<br>© PHONESPOT. All rights reserved.</p>
