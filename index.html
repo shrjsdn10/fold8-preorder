@@ -28,13 +28,13 @@
   .kakao-btn span{margin-right:6px;}
   .cta-note{font-size:12px;color:var(--grey);margin-top:10px;text-align:center;}
 
-  /* ① HERO (라이트 언팩 티저) */
-  .hero{position:relative;text-align:center;padding:52px 24px 44px;background:linear-gradient(180deg,#d7d7d4 0%,#c9c9c6 100%);color:#111;}
-  .model-chips{font-size:16px;font-weight:600;color:#333;letter-spacing:.3px;margin-bottom:14px;}
-  .hero h1{font-size:34px;font-weight:900;line-height:1.28;color:#0d0d0d;letter-spacing:-.5px;}
-  .ticket-wrap{margin:34px auto 30px;width:230px;filter:drop-shadow(0 14px 26px rgba(0,0,0,.18));}
-  .unpacked-logo{font-size:26px;font-weight:800;color:#1a1a1a;letter-spacing:-.5px;margin-bottom:24px;}
-  .hero-cta{display:inline-block;background:#111;color:#fff;font-size:19px;font-weight:800;padding:15px 52px;border-radius:999px;text-decoration:none;}
+  /* ① HERO (언팩 티저 이미지 + 텍스트 오버레이) */
+  .hero{position:relative;text-align:center;padding:0;background:#d4d4d1;}
+  .hero-bg{display:block;width:100%;height:auto;}
+  .hero-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;padding:34px 24px 30px;}
+  .model-chips{font-size:15px;font-weight:600;color:#333;letter-spacing:.3px;margin-bottom:10px;}
+  .hero h1{font-size:33px;font-weight:900;line-height:1.28;color:#0d0d0d;letter-spacing:-.5px;}
+  .hero-cta{display:inline-block;background:#111;color:#fff;font-size:18px;font-weight:800;padding:14px 50px;border-radius:999px;text-decoration:none;margin-top:auto;}
 
   /* ② 라인업 카드 */
   .lineup-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0 8px;}
@@ -137,56 +137,14 @@
 <body>
 <div class="page">
 
-  <!-- ① 히어로 (라이트 언팩 티저) -->
+  <!-- ① 히어로 (언팩 티저 이미지 + 텍스트 오버레이) -->
   <section class="hero">
-    <div class="model-chips">Galaxy Z Fold 8 | Z Flip 8</div>
-    <h1>폰스팟 사전예약<br>알림 신청</h1>
-    <svg class="ticket-wrap" viewBox="0 0 230 340" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="spark" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="#3d8bff"/><stop offset="100%" stop-color="#1f57e0"/>
-        </linearGradient>
-        <linearGradient id="sparkG" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="#2fd3a8"/><stop offset="100%" stop-color="#2f8bff"/>
-        </linearGradient>
-        <linearGradient id="cube" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="#c8cdf0"/><stop offset="100%" stop-color="#8f97d8"/>
-        </linearGradient>
-      </defs>
-      <!-- 바코드 티켓 (상단, 살짝 기울임) -->
-      <g transform="rotate(-4 115 55)">
-        <rect x="35" y="20" width="160" height="68" rx="8" fill="#fff"/>
-        <g fill="#3a3a3a">
-          <rect x="55" y="34" width="3" height="34"/><rect x="61" y="34" width="1.5" height="34"/>
-          <rect x="66" y="34" width="4" height="34"/><rect x="73" y="34" width="1.5" height="34"/>
-          <rect x="78" y="34" width="2.5" height="34"/><rect x="84" y="34" width="4.5" height="34"/>
-          <rect x="92" y="34" width="1.5" height="34"/><rect x="97" y="34" width="3" height="34"/>
-          <rect x="103" y="34" width="2" height="34"/><rect x="108" y="34" width="4" height="34"/>
-          <rect x="115" y="34" width="1.5" height="34"/><rect x="120" y="34" width="3.5" height="34"/>
-          <rect x="127" y="34" width="2" height="34"/><rect x="132" y="34" width="4.5" height="34"/>
-          <rect x="140" y="34" width="1.5" height="34"/><rect x="145" y="34" width="2.5" height="34"/>
-          <rect x="151" y="34" width="3.5" height="34"/><rect x="158" y="34" width="1.5" height="34"/>
-          <rect x="163" y="34" width="4" height="34"/><rect x="170" y="34" width="2" height="34"/>
-        </g>
-      </g>
-      <!-- 메인 티켓 카드 -->
-      <rect x="30" y="104" width="170" height="216" rx="10" fill="#fff"/>
-      <!-- 큐브 + 스파클 -->
-      <g transform="translate(115 232)">
-        <path d="M-42 -8 L0 12 L42 -8 L0 -28 Z" fill="url(#cube)" opacity=".9"/>
-        <path d="M-42 -8 L-42 22 L0 42 L0 12 Z" fill="#aab1e2"/>
-        <path d="M42 -8 L42 22 L0 42 L0 12 Z" fill="#8f97d8"/>
-        <path d="M0 -22 L4 -12 L0 12 L-4 -12 Z" fill="#f4f7ff"/>
-      </g>
-      <g>
-        <path d="M115 130 l7 18 18 7 -18 7 -7 18 -7 -18 -18 -7 18 -7 Z" fill="url(#spark)"/>
-        <path d="M78 150 l5 12 12 5 -12 5 -5 12 -5 -12 -12 -5 12 -5 Z" fill="url(#spark)" opacity=".85"/>
-        <path d="M88 118 l4 9 9 4 -9 4 -4 9 -4 -9 -9 -4 9 -4 Z" fill="url(#sparkG)"/>
-        <path d="M142 176 l3.5 8 8 3.5 -8 3.5 -3.5 8 -3.5 -8 -8 -3.5 8 -3.5 Z" fill="url(#spark)" opacity=".9"/>
-      </g>
-    </svg>
-    <div class="unpacked-logo">Galaxy Unpacked</div>
-    <a class="hero-cta" href="https://pf.kakao.com/_폰스팟채널" target="_blank">알림 신청하기</a>
+    <img class="hero-bg" src="갤럭시 언팩 이미지 세로형.png" alt="Galaxy Unpacked 티저">
+    <div class="hero-overlay">
+      <div class="model-chips">Galaxy Z Fold 8 | Z Flip 8</div>
+      <h1>폰스팟 사전예약<br>알림 신청</h1>
+      <a class="hero-cta" href="https://pf.kakao.com/_폰스팟채널" target="_blank">알림 신청하기</a>
+    </div>
   </section>
 
   <div class="divider"></div>
