@@ -38,15 +38,39 @@
 
   /* ② 라인업 카드 */
   .lineup-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0 8px;}
-  .lu-card{background:var(--navy-card);border:1px solid rgba(61,139,255,.3);border-radius:14px;padding:10px 8px 12px;text-align:center;}
+  .lu-card{position:relative;background:var(--navy-card);border:1px solid rgba(61,139,255,.3);border-radius:14px;padding:10px 8px 12px;text-align:center;transition:border-color .25s,box-shadow .25s,transform .25s;}
+  .lu-card.active{border-color:var(--cyan);box-shadow:0 0 0 1px rgba(90,200,255,.2),0 0 22px rgba(61,139,255,.35);transform:translateY(-3px);}
+  .lu-card.active::after{content:"";position:absolute;left:50%;bottom:-17px;transform:translateX(-50%);width:0;height:0;border-left:10px solid transparent;border-right:10px solid transparent;border-top:10px solid var(--cyan);filter:drop-shadow(0 3px 4px rgba(61,139,255,.4));}
+  .lu-select{display:block;width:100%;padding:0;border:0;background:none;color:inherit;cursor:pointer;}
+  .lu-select:focus-visible{outline:2px solid var(--cyan);outline-offset:4px;border-radius:9px;}
   .lu-img{width:100%;height:78px;object-fit:contain;display:block;filter:drop-shadow(0 4px 10px rgba(61,139,255,.25));}
   .lu-fade{object-fit:cover;border-radius:9px;filter:none;
     -webkit-mask-image:radial-gradient(ellipse 72% 72% at 50% 50%,#000 52%,transparent 97%);
     mask-image:radial-gradient(ellipse 72% 72% at 50% 50%,#000 52%,transparent 97%);}
-  .lu-name{font-size:12.5px;font-weight:800;margin:8px 0 2px;}
+  .lu-name{display:block;font-size:12.5px;font-weight:800;margin:8px 0 2px;}
   .lu-new{display:inline-block;font-size:9px;font-weight:800;color:#0a1330;background:linear-gradient(90deg,#7db4ff,#5ac8ff);padding:2px 7px;border-radius:999px;margin-bottom:6px;}
-  .lu-btn{display:block;font-size:11.5px;font-weight:800;color:#fff;background:linear-gradient(90deg,#2f6bff,#3d8bff);border-radius:9px;padding:8px 0;text-decoration:none;margin-top:8px;}
+  .lu-expand-hint{display:block;position:relative;width:42px;height:24px;margin:5px auto 0;transition:transform .28s ease;}
+  .lu-expand-hint::before{content:"";position:absolute;left:50%;top:5px;width:13px;height:13px;border-right:2px solid var(--cyan);border-bottom:2px solid var(--cyan);transform:translateX(-50%) rotate(45deg);filter:drop-shadow(0 2px 4px rgba(90,200,255,.55));}
+  .lu-select:hover .lu-expand-hint::before,.lu-select:focus-visible .lu-expand-hint::before{border-color:#fff;filter:drop-shadow(0 2px 7px rgba(90,200,255,.9));}
+  .lu-select[aria-expanded="true"] .lu-expand-hint{transform:rotate(180deg);}
+  .lu-select[aria-expanded="true"] .lu-expand-hint::before{border-color:#fff;}
   .lu-disclaim{font-size:10.5px;color:#5a6688;text-align:center;margin-top:10px;}
+  .spec-stage{display:none;position:relative;margin-top:18px;background:linear-gradient(160deg,#14234e,#0b1535);border:1px solid var(--cyan);border-radius:15px;padding:16px;box-shadow:0 10px 28px rgba(0,0,0,.28),0 0 18px rgba(61,139,255,.18);animation:specOpen .28s ease-out;}
+  .spec-stage.open{display:block;}
+  @keyframes specOpen{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+  .spec-panel{display:none;}
+  .spec-panel.active{display:block;}
+  .spec-head{display:flex;align-items:center;gap:9px;margin-bottom:12px;}
+  .spec-badge{font-size:10px;font-weight:800;color:#071026;background:linear-gradient(90deg,#7db4ff,#5ac8ff);padding:3px 8px;border-radius:999px;}
+  .spec-name{font-size:15px;font-weight:900;}
+  .spec-close{margin-left:auto;border:0;background:rgba(255,255,255,.08);color:#aab7d8;width:27px;height:27px;border-radius:50%;cursor:pointer;font-size:16px;}
+  .spec-body{padding:0;}
+  .spec-status{font-size:11.5px;color:#9fb0da;background:rgba(61,139,255,.09);border-radius:9px;padding:9px 10px;margin-bottom:10px;line-height:1.45;}
+  .spec-row{display:grid;grid-template-columns:78px 1fr;gap:10px;padding:9px 0;border-bottom:1px solid rgba(61,139,255,.12);font-size:12.5px;line-height:1.4;}
+  .spec-row:last-child{border-bottom:none;}
+  .spec-row .key{font-weight:800;color:var(--cyan);}
+  .spec-row .value{color:#c6cfe8;}
+  .spec-cta{margin-top:14px;padding:13px 0;border-radius:11px;font-size:14px;box-shadow:0 5px 16px rgba(254,229,0,.16);}
 
   /* ③ 신청 방법 스텝 */
   .step{display:flex;gap:12px;align-items:flex-start;background:var(--navy-card);border:1px solid rgba(61,139,255,.22);border-radius:14px;padding:15px 16px;margin-bottom:10px;}
@@ -55,15 +79,6 @@
   .step .desc{font-size:12.5px;color:var(--grey);line-height:1.5;}
   .step .desc b{color:var(--cyan);}
 
-  /* ④ 알림 신청 혜택 (물음표 카드) */
-  .benefit-list{display:flex;flex-direction:column;gap:10px;margin:16px 0 12px;}
-  .bn-card{position:relative;display:flex;align-items:center;gap:14px;background:linear-gradient(160deg,#16244f,#0c1636);border:1px solid rgba(61,139,255,.3);border-radius:14px;padding:16px;}
-  .bn-card .chip{flex-shrink:0;font-size:11px;font-weight:800;color:#fff;background:linear-gradient(90deg,#2f6bff,#5ac8ff);padding:4px 10px;border-radius:999px;}
-  .bn-card .blur-txt{font-size:15px;font-weight:800;color:#7db4ff;filter:blur(4px);user-select:none;}
-  .bn-card .q{margin-left:auto;font-size:22px;font-weight:900;color:#5ac8ff;}
-  .benefit-copy{font-size:13.5px;line-height:1.6;color:#c6cfe8;text-align:center;}
-  .benefit-copy b{color:#fff;}
-
   /* ⑤ 사전예약 혜택 예고 */
   .cat-label{display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:800;margin:18px 0 10px;}
   .cat-label .n{width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#2f6bff,#5ac8ff);color:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;}
@@ -71,37 +86,44 @@
   .soon-card .t{font-size:14.5px;font-weight:800;margin-bottom:4px;}
   .soon-card .d{font-size:12.5px;color:var(--grey);line-height:1.55;}
   .soon-card .d b{color:#7db4ff;}
+  .storage-card{position:relative;overflow:hidden;background:linear-gradient(145deg,#eef0f8,#d9d9e7);color:#101322;border-radius:18px;padding:22px 18px 20px;margin:16px 0;min-height:250px;}
+  .storage-card h3{font-size:22px;line-height:1.2;letter-spacing:-.6px;margin-bottom:9px;}
+  .storage-card p{font-size:12.5px;line-height:1.5;color:#41465c;max-width:250px;}
+  .storage-visual{position:absolute;right:18px;bottom:18px;width:165px;height:103px;border-radius:28px;background:linear-gradient(145deg,#a598ff,#684de2 62%,#4d35bf);box-shadow:0 15px 30px rgba(82,58,190,.28);transform:rotate(-4deg);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-shadow:0 2px 8px rgba(36,20,112,.4);}
+  .storage-visual .x2{font-size:19px;font-weight:900;opacity:.82;}
+  .storage-visual .capacity{font-size:29px;font-weight:900;letter-spacing:-1px;}
+  .storage-visual .from{font-size:10px;font-weight:700;opacity:.82;}
+  .storage-up{position:absolute;right:-7px;top:-7px;width:42px;height:42px;border-radius:50%;background:#62cc7a;color:#fff;font-size:25px;font-weight:900;display:flex;align-items:center;justify-content:center;box-shadow:0 5px 12px rgba(26,115,54,.3);}
 
   /* ⑥ 일정/절차 */
-  .sched-list{background:var(--navy-card);border:1px solid rgba(61,139,255,.25);border-radius:var(--radius);padding:6px 18px;margin-bottom:14px;}
-  .sched-row{display:flex;align-items:center;gap:14px;padding:11px 0;border-bottom:1px solid rgba(61,139,255,.12);}
-  .sched-row:last-child{border-bottom:none;}
-  .sched-row .k{flex-shrink:0;width:74px;font-size:13px;font-weight:800;color:var(--cyan);}
-  .sched-row .v{font-size:13.5px;font-weight:600;color:#dfe7fb;}
-  .cal-card{background:var(--navy-card);border:1px solid rgba(61,139,255,.25);border-radius:var(--radius);padding:18px 14px;margin-bottom:12px;}
-  .cal-title{font-size:14px;font-weight:800;color:var(--cyan);margin-bottom:10px;text-align:center;}
-  table.cal{width:100%;border-collapse:collapse;table-layout:fixed;}
-  table.cal th{font-size:11px;color:var(--grey);font-weight:600;padding:4px 0;}
-  table.cal td{text-align:center;font-size:13px;color:#c6cfe8;padding:0;height:40px;position:relative;}
-  table.cal td.dim{color:#3a4463;}
-  td.milestone .d{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#2f6bff,#5ac8ff);color:#fff;font-weight:800;box-shadow:0 0 14px rgba(61,139,255,.55);}
-  td.milestone .tag{position:absolute;left:50%;transform:translateX(-50%);bottom:-3px;font-size:8.5px;font-weight:700;color:var(--cyan);white-space:nowrap;}
-  .proc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px;}
-  .proc{background:var(--navy-card);border:1px solid rgba(61,139,255,.25);border-radius:12px;padding:12px 4px;text-align:center;}
-  .proc.active{border-color:var(--cyan);box-shadow:0 0 16px rgba(61,139,255,.35);}
-  .proc .ico{font-size:20px;}
-  .proc .pn{font-size:9px;font-weight:800;color:#0a1330;background:linear-gradient(90deg,#7db4ff,#5ac8ff);border-radius:999px;padding:1px 7px;display:inline-block;margin:6px 0 4px;}
-  .proc .pt{font-size:10.5px;font-weight:700;line-height:1.35;color:#c6cfe8;}
+  .schedule-flow{background:var(--navy-card);border:1px solid rgba(61,139,255,.25);border-radius:18px;padding:18px 8px 15px;margin-top:16px;overflow:hidden;}
+  .mini-cal{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:2px;}
+  .cal-day{text-align:center;font-size:10.5px;font-weight:800;color:#aab7d8;padding-bottom:9px;border-bottom:1px solid rgba(120,145,200,.28);}
+  .cal-date{position:relative;min-height:56px;text-align:center;padding-top:8px;border-radius:8px;color:#f4f7ff;font-size:14px;font-weight:900;}
+  .cal-date.dim{color:#414c70;}
+  .cal-date.reserve{background:rgba(72,142,255,.2);}
+  .cal-date.open-period{background:rgba(75,196,105,.16);}
+  .cal-date.launch-period{background:rgba(255,90,100,.16);}
+  .cal-date .month{font-size:9px;color:#a2afd0;margin-right:1px;}
+  .cal-date .mark{display:flex;align-items:center;justify-content:center;width:30px;height:30px;margin:-3px auto 0;border-radius:50%;background:#2d61ff;color:#fff;box-shadow:0 0 12px rgba(47,107,255,.45);}
+  .cal-date.green .mark{background:#34b653;box-shadow:0 0 12px rgba(52,182,83,.38);}
+  .cal-date.red .mark{background:#ee3d49;box-shadow:0 0 12px rgba(238,61,73,.38);}
+  .cal-date .event{display:block;margin-top:3px;font-size:8.5px;line-height:1.2;color:#b8cbff;font-weight:800;word-break:keep-all;letter-spacing:-.35px;}
+  .cal-date.green .event{color:#8ee6a2;}.cal-date.red .event{color:#ffa1a7;}
+  .cal-legend{display:flex;justify-content:center;gap:12px;margin-top:13px;font-size:10px;font-weight:700;color:#a5b0ce;}
+  .cal-legend span::before{content:"";display:inline-block;width:7px;height:7px;border-radius:2px;margin-right:4px;background:#4c8eff;}
+  .cal-legend .opening::before{background:#4bc469;}.cal-legend .launching::before{background:#ff5a64;}
+  .schedule-note{font-size:10.5px;color:#69769b;text-align:center;margin-top:14px;}
+  .process-kicker{text-align:center;font-size:11px;font-weight:900;letter-spacing:2px;color:var(--cyan);margin-bottom:6px;}
+  .process-scroll{display:flex;gap:11px;overflow-x:auto;padding:6px 2px 12px;scroll-snap-type:x mandatory;scrollbar-width:none;}
+  .process-scroll::-webkit-scrollbar{display:none;}
+  .process-card{flex:0 0 82%;scroll-snap-align:start;background:linear-gradient(155deg,#16264f,#0d1738);border:1px solid rgba(61,139,255,.28);border-radius:16px;padding:18px;}
+  .process-card .visual{height:112px;border-radius:12px;background:linear-gradient(135deg,rgba(47,107,255,.3),rgba(90,200,255,.08));display:flex;align-items:center;justify-content:center;font-size:45px;margin-bottom:14px;}
+  .process-card .step-no{display:inline-flex;width:24px;height:24px;border-radius:50%;align-items:center;justify-content:center;background:#fff;color:#08122d;font-size:12px;font-weight:900;margin-right:7px;}
+  .process-card h3{display:inline;font-size:15px;line-height:1.4;}
+  .process-card p{font-size:12px;line-height:1.55;color:var(--grey);margin-top:9px;}
+  .process-hint{text-align:center;font-size:10.5px;color:#69769b;margin-top:2px;}
   .disclaim{font-size:11px;color:#5a6688;margin-top:12px;text-align:center;}
-
-  /* ⑦ 안심 포인트 */
-  .no-chips{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 14px;}
-  .no-chip{font-size:12px;font-weight:700;color:#ff8f8f;background:rgba(255,90,90,.1);border:1px solid rgba(255,90,90,.35);padding:6px 12px;border-radius:999px;}
-  .trust-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-  .trust{background:var(--navy-card);border:1px solid rgba(61,139,255,.25);border-radius:14px;padding:16px 14px;}
-  .trust .ico{font-size:20px;margin-bottom:8px;}
-  .trust .t{font-size:13.5px;font-weight:800;margin-bottom:3px;}
-  .trust .d{font-size:11.5px;color:var(--grey);line-height:1.45;}
 
   /* ⑧ 후기 */
   .review{max-width:88%;background:#fff;color:#1a2440;border-radius:16px;padding:13px 16px;font-size:12.5px;line-height:1.55;margin-bottom:12px;}
@@ -142,7 +164,7 @@
 
   <!-- ① 히어로 (언팩 티저 이미지 + 텍스트 오버레이) -->
   <section class="hero">
-    <img class="hero-bg" src="갤럭시 언팩 이미지 세로형.png" alt="Galaxy Unpacked 티저">
+    <img class="hero-bg" src="assets/갤럭시 언팩 이미지 세로형.png" alt="Galaxy Unpacked 티저">
     <div class="hero-overlay">
       <div class="model-chips">Galaxy Z Fold 8 | Z Flip 8</div>
       <h1>폰스팟 사전예약<br>알림 신청</h1>
@@ -159,19 +181,64 @@
     <p class="sub">라인업부터 확인하고, 원하는 모델의 소식을 가장 먼저 받아보세요.</p>
     <div class="lineup-grid">
       <div class="lu-card">
-        <img class="lu-img" data-cut="갤럭시 플립 8_2.jpg" data-crop="0,0.02,1,0.96" alt="갤럭시 플립8 예상 렌더">
-        <div class="lu-name">갤럭시 플립8</div>
-        <a class="lu-btn" href="https://pf.kakao.com/_hZPcG/friend" target="_blank">알림받기</a>
+        <button class="lu-select" type="button" data-spec="flip8" aria-expanded="false" aria-controls="spec-stage">
+          <img class="lu-img" data-cut="assets/갤럭시 플립 8_2.jpg" data-crop="0,0.02,1,0.96" alt="갤럭시 플립8 예상 렌더">
+          <span class="lu-name">갤럭시 플립8</span>
+          <span class="lu-expand-hint" aria-hidden="true"></span>
+        </button>
       </div>
       <div class="lu-card">
-        <img class="lu-img lu-fade" data-cut="갤럭시 폴드 8_와이드.jpg" data-t="0" data-patch="0.17,0.485,0.55,0.075" alt="갤럭시 폴드8 예상 렌더">
-        <div class="lu-name">갤럭시 폴드8</div>
-        <a class="lu-btn" href="https://pf.kakao.com/_hZPcG/friend" target="_blank">알림받기</a>
+        <button class="lu-select" type="button" data-spec="fold8" aria-expanded="false" aria-controls="spec-stage">
+          <img class="lu-img lu-fade" data-cut="assets/갤럭시 폴드 8_와이드.jpg" data-t="0" data-patch="0.17,0.485,0.55,0.075" alt="갤럭시 폴드8 예상 렌더">
+          <span class="lu-name">갤럭시 폴드8</span>
+          <span class="lu-expand-hint" aria-hidden="true"></span>
+        </button>
       </div>
       <div class="lu-card">
-        <img class="lu-img" data-cut="갤럭시 폴드 8_2.webp" alt="갤럭시 폴드8 울트라 예상 렌더">
-        <div class="lu-name">폴드8 울트라</div>
-        <a class="lu-btn" href="https://pf.kakao.com/_hZPcG/friend" target="_blank">알림받기</a>
+        <button class="lu-select" type="button" data-spec="ultra" aria-expanded="false" aria-controls="spec-stage">
+          <img class="lu-img" data-cut="assets/갤럭시 폴드 8_2.webp" alt="갤럭시 폴드8 울트라 예상 렌더">
+          <span class="lu-name">폴드8 울트라</span>
+          <span class="lu-expand-hint" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+    <div class="spec-stage" id="spec-stage" aria-live="polite">
+      <div class="spec-panel" data-panel="flip8">
+        <div class="spec-head"><span class="spec-badge">FLIP</span><span class="spec-name">갤럭시 Z Flip8 상세 스펙</span><button class="spec-close" type="button" aria-label="상세 스펙 닫기">×</button></div>
+        <div class="spec-body">
+          <p class="spec-status">공식 발표 전 제품입니다. 7월 22일 언팩 발표 후 확정 사양으로 업데이트됩니다.</p>
+          <div class="spec-row"><span class="key">디스플레이</span><span class="value">공식 발표 후 업데이트</span></div>
+          <div class="spec-row"><span class="key">프로세서</span><span class="value">공식 발표 후 업데이트</span></div>
+          <div class="spec-row"><span class="key">카메라</span><span class="value">공식 발표 후 업데이트</span></div>
+          <div class="spec-row"><span class="key">배터리</span><span class="value">공식 발표 후 업데이트</span></div>
+          <div class="spec-row"><span class="key">크기·무게</span><span class="value">공식 발표 후 업데이트</span></div>
+          <a class="kakao-btn spec-cta" href="https://pf.kakao.com/_hZPcG/friend" target="_blank"><span>💬</span>갤럭시 Z Flip8 알림 신청</a>
+        </div>
+      </div>
+      <div class="spec-panel" data-panel="fold8">
+        <div class="spec-head"><span class="spec-badge">FOLD</span><span class="spec-name">갤럭시 Z Fold8 상세 스펙</span><button class="spec-close" type="button" aria-label="상세 스펙 닫기">×</button></div>
+        <div class="spec-body">
+          <p class="spec-status">공식 발표 전 제품입니다. 7월 22일 언팩 발표 후 확정 사양으로 업데이트됩니다.</p>
+          <div class="spec-row"><span class="key">디스플레이</span><span class="value">공식 발표 후 업데이트</span></div>
+          <div class="spec-row"><span class="key">프로세서</span><span class="value">공식 발표 후 업데이트</span></div>
+          <div class="spec-row"><span class="key">카메라</span><span class="value">공식 발표 후 업데이트</span></div>
+          <div class="spec-row"><span class="key">배터리</span><span class="value">공식 발표 후 업데이트</span></div>
+          <div class="spec-row"><span class="key">크기·무게</span><span class="value">공식 발표 후 업데이트</span></div>
+          <a class="kakao-btn spec-cta" href="https://pf.kakao.com/_hZPcG/friend" target="_blank"><span>💬</span>갤럭시 Z Fold8 알림 신청</a>
+        </div>
+      </div>
+      <div class="spec-panel" data-panel="ultra">
+        <div class="spec-head"><span class="spec-badge">ULTRA</span><span class="spec-name">갤럭시 Z Fold8 Ultra 상세 스펙</span><button class="spec-close" type="button" aria-label="상세 스펙 닫기">×</button></div>
+        <div class="spec-body">
+          <p class="spec-status">모델명과 출시 여부를 포함한 공식 정보가 아직 공개되지 않았습니다. 언팩 발표 후 업데이트됩니다.</p>
+          <div class="spec-row"><span class="key">출시 여부</span><span class="value">공식 발표 후 확인</span></div>
+          <div class="spec-row"><span class="key">디스플레이</span><span class="value">공식 발표 후 업데이트</span></div>
+          <div class="spec-row"><span class="key">프로세서</span><span class="value">공식 발표 후 업데이트</span></div>
+          <div class="spec-row"><span class="key">카메라</span><span class="value">공식 발표 후 업데이트</span></div>
+          <div class="spec-row"><span class="key">배터리</span><span class="value">공식 발표 후 업데이트</span></div>
+          <div class="spec-row"><span class="key">크기·무게</span><span class="value">공식 발표 후 업데이트</span></div>
+          <a class="kakao-btn spec-cta" href="https://pf.kakao.com/_hZPcG/friend" target="_blank"><span>💬</span>갤럭시 Z Fold8 Ultra 알림 신청</a>
+        </div>
       </div>
     </div>
     <p class="lu-disclaim">※ 실제 출시 제품과 디자인·스펙·색상은 달라질 수 있습니다</p>
@@ -191,8 +258,8 @@
     </div>
     <div class="step">
       <div class="num">2</div>
-      <div><div class="tit">채널로 '폴드8 알림' 메시지 전송</div>
-      <div class="desc">보내주시면 <b>사전예약 오픈·혜택·가격 공개</b> 소식을 순서대로 보내드려요.</div></div>
+      <div><div class="tit">끝! 알림 신청 완료</div>
+      <div class="desc">사전예약이 시작되면 <b>오픈 일정·혜택·가격 공개</b> 소식을 알림으로 보내드려요.</div></div>
     </div>
     <div class="cta-wrap" style="padding:10px 0 0;">
       <a class="kakao-btn" href="https://pf.kakao.com/_hZPcG/friend" target="_blank"><span>💬</span>지금 알림 신청하기</a>
@@ -201,24 +268,15 @@
 
   <div class="divider"></div>
 
-  <!-- ④ 알림 신청 혜택 (비공개 티저) -->
-  <section>
-    <p class="sec-eyebrow">신청 순서가 곧 혜택 순서</p>
-    <h2>오직 폰스팟<br>사전알림 신청 고객만</h2>
-    <div class="benefit-list">
-      <div class="bn-card"><span class="chip">혜택 01</span><span class="blur-txt">사전예약 단독 사은품 증정</span><span class="q">?</span></div>
-      <div class="bn-card"><span class="chip">혜택 02</span><span class="blur-txt">폰스팟 단독 추가 지원 혜택</span><span class="q">?</span></div>
-      <div class="bn-card"><span class="chip">혜택 03</span><span class="blur-txt">개통 고객 한정 스페셜 혜택</span><span class="q">?</span></div>
-    </div>
-    <p class="benefit-copy"><b>혜택은 사전예약 전날, 알림 신청자에게 가장 먼저 공개됩니다</b><br>먼저 신청할수록 유리해요</p>
-  </section>
-
-  <div class="divider"></div>
-
   <!-- ⑤ 사전예약 혜택 예고 -->
   <section>
     <p class="sec-eyebrow">오직 사전예약 고객만</p>
     <h2>사전예약하면 이만큼 받아요</h2>
+    <div class="storage-card">
+      <h3>256GB 가격으로<br>512GB 용량 업그레이드</h3>
+      <p>삼성전자 사전예약 혜택 발표 시 적용 모델과 조건을 정확하게 업데이트합니다.</p>
+      <div class="storage-visual" aria-hidden="true"><span class="x2">×2</span><span class="capacity">512GB</span><span class="from">256GB → 512GB</span><span class="storage-up">↑</span></div>
+    </div>
     <div class="cat-label"><span class="n">1</span>삼성 제조사 혜택</div>
     <div class="soon-card">
       <div class="t">공개 예정 🔒</div>
@@ -233,45 +291,36 @@
 
   <div class="divider"></div>
 
-  <!-- ⑥ 사전예약 기간 및 절차 -->
+  <!-- ⑥ 사전예약 일정 -->
   <section>
-    <span class="sec-label">사전예약 기간 및 절차 (예상)</span>
-    <h2>언팩부터 정식 출시까지<br>한눈에 확인하세요</h2>
-    <div style="height:14px"></div>
-    <div class="sched-list">
-      <div class="sched-row"><span class="k">언팩</span><span class="v">7/22(수) 22시 · 한국시간</span></div>
-      <div class="sched-row"><span class="k">사전예약</span><span class="v">7/28(화) ~ 8/3(월)</span></div>
-      <div class="sched-row"><span class="k">사전개통</span><span class="v">8/4(화) ~ 8/7(금)</span></div>
-      <div class="sched-row"><span class="k">정식 출시</span><span class="v">8/7(금)</span></div>
+    <span class="sec-label">사전예약 일정 (예상)</span>
+    <h2>한눈에 보는<br>사전예약 일정</h2>
+    <div class="schedule-flow">
+      <div class="mini-cal" aria-label="2026년 7월과 8월 사전예약 일정">
+        <div class="cal-day">일</div><div class="cal-day">월</div><div class="cal-day">화</div><div class="cal-day">수</div><div class="cal-day">목</div><div class="cal-day">금</div><div class="cal-day">토</div>
+        <div class="cal-date dim"></div><div class="cal-date">20</div><div class="cal-date">21</div><div class="cal-date"><span class="mark">22</span><span class="event">언팩 22시</span></div><div class="cal-date">23</div><div class="cal-date">24</div><div class="cal-date">25</div>
+        <div class="cal-date">26</div><div class="cal-date">27</div><div class="cal-date reserve"><span class="mark">28</span><span class="event">예약 시작</span></div><div class="cal-date reserve">29</div><div class="cal-date reserve">30</div><div class="cal-date reserve">31</div><div class="cal-date reserve"><span class="month">8/</span>1</div>
+        <div class="cal-date reserve"><span class="month">8/</span>2</div><div class="cal-date reserve"><span class="month">8/</span>3</div><div class="cal-date open-period green"><span class="mark">4</span><span class="event">사전개통</span></div><div class="cal-date open-period">5</div><div class="cal-date open-period">6</div><div class="cal-date launch-period red"><span class="mark">7</span><span class="event">정식 출시</span></div><div class="cal-date dim">8</div>
+      </div>
+      <div class="cal-legend"><span>사전예약</span><span class="opening">사전개통</span><span class="launching">정식 출시</span></div>
+      <p class="schedule-note">일정은 삼성전자 공식 발표에 따라 변경될 수 있습니다.</p>
     </div>
-    <div class="cal-card"><div class="cal-title">2026. 07</div><table class="cal" id="cal-jul"></table></div>
-    <div class="cal-card"><div class="cal-title">2026. 08</div><table class="cal" id="cal-aug"></table></div>
-    <div class="proc-grid">
-      <div class="proc active"><div class="ico">🔔</div><div class="pn">01 지금 여기!</div><div class="pt">사전<br>알림신청</div></div>
-      <div class="proc"><div class="ico">📝</div><div class="pn">02</div><div class="pt">카카오톡<br>예약 접수</div></div>
-      <div class="proc"><div class="ico">🚚</div><div class="pn">03</div><div class="pt">기기개통<br>및 발송</div></div>
-      <div class="proc"><div class="ico">📦</div><div class="pn">04</div><div class="pt">기기수령<br>및 사용</div></div>
-    </div>
-    <p class="disclaim">일정은 삼성전자 공식 발표 기준이며 변동될 수 있습니다</p>
   </section>
 
   <div class="divider"></div>
 
-  <!-- ⑦ 안심 포인트 -->
+  <!-- ⑦ 온라인 사전예약 진행 절차 -->
   <section>
-    <span class="sec-label">부담 없이 신청하세요</span>
-    <h2>알림 신청은 무료예요<br>언제든 취소할 수 있어요</h2>
-    <div class="no-chips">
-      <span class="no-chip">고액 요금제 ✕</span>
-      <span class="no-chip">부가서비스 ✕</span>
-      <span class="no-chip">중고폰 반납조건 ✕</span>
+    <p class="process-kicker">PROCESS</p>
+    <h2 style="text-align:center">손쉬운 온라인 사전예약<br>진행 절차 안내</h2>
+    <div class="process-scroll">
+      <article class="process-card"><div class="visual">🔔</div><span class="step-no">1</span><h3>사전예약 알림 신청</h3><p>카카오 채널을 추가하고 원하는 모델의 알림을 신청합니다.</p></article>
+      <article class="process-card"><div class="visual">💬</div><span class="step-no">2</span><h3>예약 시작 안내 확인</h3><p>공식 사전예약이 시작되면 카카오톡으로 일정과 신청 방법을 안내받습니다.</p></article>
+      <article class="process-card"><div class="visual">📝</div><span class="step-no">3</span><h3>상담 및 신청서 작성</h3><p>가입 유형, 요금제, 배송 또는 수령 방법을 상담한 뒤 신청서를 작성합니다.</p></article>
+      <article class="process-card"><div class="visual">📲</div><span class="step-no">4</span><h3>개통 진행 확인</h3><p>신청 내용 확인 후 개통을 진행하며 주요 상태를 안내받습니다.</p></article>
+      <article class="process-card"><div class="visual">📦</div><span class="step-no">5</span><h3>기기 수령 및 사용</h3><p>개통 완료 후 안내된 방법에 따라 택배 또는 매장에서 기기를 수령합니다.</p></article>
     </div>
-    <div class="trust-grid">
-      <div class="trust"><div class="ico">🛡️</div><div class="t">공식 인증 판매점</div><div class="d">전문 상담원이 1:1로 안내해드려요</div></div>
-      <div class="trust"><div class="ico">🔒</div><div class="t">개인정보 걱정 없이</div><div class="d">꼭 필요한 안내만 보내드려요</div></div>
-      <div class="trust"><div class="ico">↩️</div><div class="t">언제든 취소 가능</div><div class="d">채널 차단만 하면 바로 해지돼요</div></div>
-      <div class="trust"><div class="ico">🔔</div><div class="t">먼저 알수록 유리</div><div class="d">혜택·일정을 우선 안내받아요</div></div>
-    </div>
+    <p class="process-hint">옆으로 밀어 전체 절차를 확인하세요 →</p>
   </section>
 
   <div class="divider"></div>
@@ -369,25 +418,37 @@
     tick(); setInterval(tick,1000);
   })();
 
-  // 달력 렌더링
-  function buildCal(id, year, month, range, milestones){
-    var first=new Date(year,month,1).getDay();
-    var days=new Date(year,month+1,0).getDate();
-    var html='<tr><th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th></tr><tr>';
-    for(var i=0;i<first;i++) html+='<td></td>';
-    for(var d=1;d<=days;d++){
-      var dow=(first+d-1)%7;
-      if(dow===0&&d!==1) html+='</tr><tr>';
-      var inRange = d>=range[0]&&d<=range[1];
-      var m = milestones[d];
-      if(m) html+='<td class="milestone"><span class="d">'+d+'</span><span class="tag">'+m+'</span></td>';
-      else html+='<td class="'+(inRange?'':'dim')+'">'+d+'</td>';
+  // 라인업 이미지 선택형 상세 스펙
+  (function(){
+    var stage=document.getElementById('spec-stage');
+    var selectors=document.querySelectorAll('.lu-select');
+    var panels=document.querySelectorAll('.spec-panel');
+    var current='';
+    function closeSpecs(){
+      current='';
+      stage.classList.remove('open');
+      selectors.forEach(function(btn){
+        btn.setAttribute('aria-expanded','false');
+        btn.closest('.lu-card').classList.remove('active');
+      });
+      panels.forEach(function(panel){panel.classList.remove('active');});
     }
-    html+='</tr>';
-    document.getElementById(id).innerHTML=html;
-  }
-  buildCal('cal-jul',2026,6,[22,31],{22:'언팩',28:'사전예약'});
-  buildCal('cal-aug',2026,7,[1,7],{4:'사전개통',7:'정식출시'});
+    selectors.forEach(function(btn){
+      btn.addEventListener('click',function(){
+        var target=btn.getAttribute('data-spec');
+        if(current===target){closeSpecs();return;}
+        closeSpecs();
+        current=target;
+        btn.setAttribute('aria-expanded','true');
+        btn.closest('.lu-card').classList.add('active');
+        document.querySelector('.spec-panel[data-panel="'+target+'"]').classList.add('active');
+        stage.classList.add('open');
+      });
+    });
+    document.querySelectorAll('.spec-close').forEach(function(btn){
+      btn.addEventListener('click',closeSpecs);
+    });
+  })();
 
   // 렌더 이미지 배경 제거 (클라이언트 누끼)
   (function(){
