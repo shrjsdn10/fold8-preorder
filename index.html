@@ -126,9 +126,9 @@
   .cal-legend .opening::before{background:#4bc469;}.cal-legend .launching::before{background:#ff5a64;}
   .schedule-note{font-size:10.5px;color:#69769b;text-align:center;margin-top:14px;}
   .process-kicker{text-align:center;font-size:11px;font-weight:900;letter-spacing:2px;color:var(--cyan);margin-bottom:6px;}
-  .process-scroll{display:flex;gap:11px;overflow-x:auto;padding:6px 2px 12px;scroll-snap-type:x mandatory;scrollbar-width:none;}
+  .process-scroll{display:flex;gap:11px;overflow-x:auto;padding:6px 6px 12px;scroll-padding-inline:6px;scroll-snap-type:x mandatory;scrollbar-width:none;}
   .process-scroll::-webkit-scrollbar{display:none;}
-  .process-card{flex:0 0 82%;scroll-snap-align:start;background:linear-gradient(155deg,#16264f,#0d1738);border:1px solid rgba(61,139,255,.28);border-radius:16px;padding:18px;}
+  .process-card{flex:0 0 82%;scroll-snap-align:start;scroll-snap-stop:always;background:linear-gradient(155deg,#16264f,#0d1738);border:1px solid rgba(61,139,255,.28);border-radius:16px;padding:18px;}
   .process-card .visual{width:100%;height:auto;aspect-ratio:4/3;overflow:hidden;border-radius:12px;background:linear-gradient(135deg,rgba(47,107,255,.3),rgba(90,200,255,.08));display:flex;align-items:center;justify-content:center;font-size:45px;margin-bottom:14px;}
   .process-card .visual img{width:100%;height:100%;display:block;object-fit:cover;}
   .process-card .step-no{display:inline-flex;width:24px;height:24px;border-radius:50%;align-items:center;justify-content:center;background:#fff;color:#08122d;font-size:12px;font-weight:900;margin-right:7px;}
@@ -165,10 +165,10 @@
 
   /* 푸터 */
   footer{padding:30px 20px 50px;text-align:center;border-top:1px solid rgba(61,139,255,.15);}
-  .sns{display:flex;justify-content:center;gap:12px;margin:16px 0;}
-  .sns a{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:transform .2s,box-shadow .2s;}
+  .sns{display:flex;justify-content:center;gap:16px;margin:22px 0;}
+  .sns a{width:66px;height:66px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:transform .2s,box-shadow .2s;}
   .sns a:hover{transform:translateY(-2px);box-shadow:0 7px 16px rgba(0,0,0,.28);}
-  .sns svg{display:block;width:30px;height:30px;}
+  .sns svg{display:block;width:45px;height:45px;}
   .foot-info{font-size:11px;color:#5a6688;line-height:1.7;}
 
   /* 스티키 카운트다운 바 */
@@ -398,7 +398,7 @@
     <div class="soon-card benefit-card">
       <div class="benefit-visual"><img src="assets/page-material-2.png" alt="폰스팟 단독 혜택 안내 이미지"></div>
       <div class="cat-label"><span class="n">2</span>폰스팟 단독 혜택</div>
-      <div class="d"><span class="status">준비 중</span> 출고가 공개 즉시 <b>폰스팟 사전예약가</b>와 함께 단독 혜택을 안내드립니다.</div>
+      <div class="d"><span class="status">공개 예정</span> 출고가 공개 즉시 <b>폰스팟 사전예약가</b>와 함께 단독 혜택을 안내드립니다.</div>
     </div>
   </section>
 
@@ -456,7 +456,6 @@
     <p class="sec-eyebrow">알림 신청하고</p>
     <h2>빠른 혜택 안내 받아보세요!</h2>
     <div class="gift">🎁</div>
-    <div class="gift-q">?</div>
     <a class="kakao-btn" href="https://pf.kakao.com/_hZPcG/friend" target="_blank"><span>💬</span>사전예약 알림 신청하기</a>
   </section>
 
@@ -491,7 +490,7 @@
         <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="14" fill="#FEE500"/><path d="M16 8.1c-5.3 0-9.6 3.35-9.6 7.48 0 2.62 1.72 4.91 4.32 6.25l-1.1 4.05c-.1.35.3.63.6.43l4.72-3.08c.35.04.7.06 1.06.06 5.3 0 9.6-3.35 9.6-7.71S21.3 8.1 16 8.1Z" fill="#191919"/></svg>
       </a>
     </div>
-    <p class="foot-info">폰스팟 (시티마켓)<br>문의: 카카오톡 채널 · 000-0000-0000<br>© PHONESPOT. All rights reserved.</p>
+    <p class="foot-info">© PHONESPOT. All rights reserved.</p>
   </footer>
 </div>
 
@@ -603,9 +602,18 @@
     var next=document.querySelector('.process-next');
     if(!track||!prev||!next) return;
     function move(dir){
-      var card=track.querySelector('.process-card');
-      var gap=parseFloat(getComputedStyle(track).gap)||11;
-      track.scrollBy({left:dir*(card.getBoundingClientRect().width+gap),behavior:'smooth'});
+      var cards=Array.from(track.querySelectorAll('.process-card'));
+      var left=track.scrollLeft;
+      var nearest=0;
+      var distance=Infinity;
+      cards.forEach(function(card,index){
+        var cardLeft=card.offsetLeft-track.offsetLeft;
+        var d=Math.abs(cardLeft-left);
+        if(d<distance){distance=d;nearest=index;}
+      });
+      var target=Math.max(0,Math.min(cards.length-1,nearest+dir));
+      var paddingLeft=parseFloat(getComputedStyle(track).paddingLeft)||0;
+      track.scrollTo({left:cards[target].offsetLeft-track.offsetLeft-paddingLeft,behavior:'smooth'});
     }
     function update(){
       prev.disabled=track.scrollLeft<3;
