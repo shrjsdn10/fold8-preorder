@@ -52,7 +52,8 @@ fbq('track', 'PageView');
   /* ① HERO (언팩 티저 이미지 + 텍스트 오버레이) */
   .hero{position:relative;text-align:center;padding:0;background:#d4d4d1;}
   .hero-bg{display:block;width:100%;height:auto;}
-  .hero-image-link{display:block;text-decoration:none;}
+  .hero-cta-link{position:absolute;left:25%;bottom:3.6%;width:50%;height:8.8%;z-index:2;border-radius:999px;text-decoration:none;}
+  .hero-cta-link:focus-visible{outline:3px solid #3182ff;outline-offset:4px;}
   .hero-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;padding:34px 24px 30px;}
   .model-chips{font-size:15px;font-weight:600;color:#333;letter-spacing:.3px;margin-bottom:10px;}
   .hero h1{font-size:33px;font-weight:900;line-height:1.28;color:#0d0d0d;letter-spacing:-.5px;}
@@ -324,9 +325,8 @@ src="https://www.facebook.com/tr?id=1055742763680174&ev=PageView&noscript=1"
 
   <!-- ① 히어로 (언팩 티저 이미지 + 텍스트 오버레이) -->
   <section class="hero">
-    <a class="hero-image-link" href="https://pf.kakao.com/_hZPcG/friend" target="_blank" aria-label="카카오톡으로 사전예약 알림 신청하기">
-      <img class="hero-bg" src="assets/preorder-littly-hero.png" alt="Galaxy Z Fold 8 및 Z Flip 8 폰스팟 사전예약 알림 신청">
-    </a>
+    <img class="hero-bg" src="assets/preorder-littly-hero.png" alt="Galaxy Z Fold 8 및 Z Flip 8 폰스팟 사전예약 알림 신청">
+    <a class="hero-cta-link" href="https://pf.kakao.com/_hZPcG/friend" target="_blank" rel="noopener noreferrer" aria-label="카카오톡으로 사전예약 알림 신청하기"></a>
   </section>
 
   <div class="divider"></div>
@@ -726,7 +726,7 @@ src="https://www.facebook.com/tr?id=1055742763680174&ev=PageView&noscript=1"
     document.querySelectorAll('a[href*="pf.kakao.com"]').forEach(function(link){
       link.addEventListener('click',function(){
         var location='section';
-        if(link.classList.contains('hero-image-link')) location='hero';
+        if(link.classList.contains('hero-cta-link')) location='hero';
         else if(link.classList.contains('spec-cta')) location='model_spec';
         else if(link.classList.contains('sb-btn')) location='sticky_bar';
         else if(link.closest('footer')) location='footer';
