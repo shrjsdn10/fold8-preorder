@@ -318,6 +318,101 @@ fbq('track', 'PageView');
   }
   .lineup-section>.sec-eyebrow,.lineup-section>h2,.lineup-section>.sub,
   .schedule-section>.sec-label,.schedule-section>h2{margin-left:8px;margin-right:8px;}
+
+  /* 밝은 테마: 흰 배경과 선명한 패널 대비 */
+  :root{
+    --navy-deep:#ffffff;
+    --navy:#ffffff;
+    --navy-card:#f5f8ff;
+    --white:#111827;
+    --grey:#596579;
+  }
+  html,body{background:#fff;}
+  .page{background:#fff;color:#111827;}
+  section:nth-of-type(even):not(.hero):not(.final){background:#f8faff;}
+  .divider{background:linear-gradient(90deg,transparent,#dbe5f5,transparent);}
+  .sec-eyebrow,.sec-label,.process-kicker{
+    color:#1769d5;
+    background:#eef6ff;
+    border-color:#b9d8ff;
+  }
+  .sub,.cta-note,.step .desc,.soon-card .d,.process-card p,.acc-body{color:#596579;}
+  .lu-card,details,.soon-card:not(.benefit-card){
+    background:#f5f8ff;
+    border-color:#cbdaf0;
+    box-shadow:0 10px 24px rgba(35,69,120,.08),inset 0 1px 0 #fff;
+  }
+  .lu-card.active{border-color:#3182f6;box-shadow:0 0 0 2px rgba(49,130,246,.12),0 12px 28px rgba(35,98,190,.12);}
+  .lu-card.active::after{border-top-color:#3182f6;filter:none;}
+  .lu-expand-hint::before{border-color:#3182f6;filter:none;}
+  .lu-select:hover .lu-expand-hint::before,.lu-select:focus-visible .lu-expand-hint::before,
+  .lu-select[aria-expanded="true"] .lu-expand-hint::before{border-color:#155ec2;filter:none;}
+  .lu-disclaim,.review-note,.schedule-note,.process-hint,.disclaim,.foot-info{color:#77839a;}
+  .lineup-arrow{
+    background:#fff;
+    color:#1769d5;
+    border-color:#bad5f7;
+    box-shadow:0 5px 14px rgba(35,69,120,.1);
+  }
+  .lineup-tab{background:#c6d2e3;}
+  .lineup-tab.selected{background:#3182f6;}
+  .spec-stage{
+    background:#fff;
+    border-color:#83bfff;
+    box-shadow:0 14px 34px rgba(35,69,120,.13),0 0 0 4px rgba(49,130,246,.05);
+  }
+  .spec-status{color:#425270;background:#f1f6ff;border-color:#d5e5fb;}
+  .spec-row{border-bottom-color:#e0e8f4;}
+  .spec-row .key{color:#1769d5;}
+  .spec-row .value{color:#374151;}
+  .spec-close{background:#eef2f7;color:#60708a;}
+  .step{background:#f5f8ff;border-color:#cbdaf0;box-shadow:0 8px 20px rgba(35,69,120,.06);}
+  .benefit-card,.process-card{
+    background:#f5f8ff;
+    border-color:#c7d9f2;
+    box-shadow:0 12px 28px rgba(35,69,120,.09),inset 0 1px 0 #fff;
+  }
+  .benefit-card .cat-label .n,.process-card .step-no{background:#1769d5;color:#fff;}
+  .benefit-card .status{color:#1769d5;}
+  .benefit-visual,.process-card .visual{
+    background:#eaf2ff;
+    box-shadow:inset 0 0 0 1px #dae7f8;
+  }
+  .schedule-flow{
+    background:#f5f8ff;
+    border-color:#c7d9f2;
+    box-shadow:0 12px 28px rgba(35,69,120,.09),inset 0 1px 0 #fff;
+  }
+  .cal-day{color:#526179;border-bottom-color:#d7e1ef;}
+  .cal-date{color:#172033;}
+  .cal-date.dim{color:#aeb8c8;}
+  .cal-date.reserve{background:#dfebff;}
+  .cal-date.open-period{background:#e2f5e8;}
+  .cal-date.launch-period{background:#ffe6e8;}
+  .cal-date .month{color:#60708a;}
+  .cal-date .event{color:#2865c7;}
+  .cal-date.green .event{color:#21853a;}
+  .cal-date.red .event{color:#d93440;}
+  .cal-legend{color:#596579;}
+  .process-arrow{
+    background:#fff;
+    color:#1769d5;
+    border-color:#bad5f7;
+  }
+  .process-arrow:hover:not(:disabled){background:#eef6ff;border-color:#3182f6;}
+  .final{background:radial-gradient(ellipse 90% 65% at 50% 45%,#e9f3ff,transparent 72%);}
+  .gift{filter:drop-shadow(0 8px 16px rgba(35,98,190,.16));}
+  summary .arrow{color:#3182f6;}
+  footer{border-top-color:#dfe7f2;background:#fff;}
+  .sns a{background:#f5f8ff;border-color:#d3deed;box-shadow:0 6px 16px rgba(35,69,120,.08);}
+  .sns a:hover{box-shadow:0 9px 20px rgba(35,69,120,.14);}
+  .sticky-bar{
+    background:rgba(255,255,255,.96);
+    border-bottom-color:#d6e1ef;
+    box-shadow:0 5px 18px rgba(28,55,95,.1);
+  }
+  .sb-left .sb-t,.sb-count .u{color:#66748a;}
+  .sb-count .n{color:#111827;}
 </style>
 </head>
 <body>
