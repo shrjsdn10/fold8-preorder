@@ -8,6 +8,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-K7DNZBK9');</script>
 <!-- End Google Tag Manager -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RZG86J1DKP"></script>
+<script>
+window.dataLayer=window.dataLayer||[];
+function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());
+gtag('config','G-RZG86J1DKP');
+</script>
+<!-- End Google tag -->
 <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -718,6 +727,9 @@ src="https://www.facebook.com/tr?id=1055742763680174&ev=PageView&noscript=1"
     function sendEvent(name,properties){
       window.dataLayer=window.dataLayer||[];
       window.dataLayer.push(Object.assign({event:name},properties));
+      if(typeof window.gtag==='function'){
+        window.gtag('event',name,properties);
+      }
       if(typeof window.fbq==='function'){
         window.fbq('trackCustom',name,properties);
       }
@@ -767,7 +779,9 @@ src="https://www.facebook.com/tr?id=1055742763680174&ev=PageView&noscript=1"
     var scroll90Sent=false;
     function pushEngagementEvent(name,percent){
       window.dataLayer=window.dataLayer||[];
-      window.dataLayer.push({event:name,scroll_percent:percent});
+      var properties={scroll_percent:percent};
+      window.dataLayer.push(Object.assign({event:name},properties));
+      if(typeof window.gtag==='function') window.gtag('event',name,properties);
     }
     function checkScrollDepth(){
       var doc=document.documentElement;
@@ -787,7 +801,9 @@ src="https://www.facebook.com/tr?id=1055742763680174&ev=PageView&noscript=1"
       if(visibleSeconds>=30){
         engaged30Sent=true;
         window.dataLayer=window.dataLayer||[];
-        window.dataLayer.push({event:'engaged_30s',engagement_time_seconds:30});
+        var properties={engagement_time_seconds:30};
+        window.dataLayer.push(Object.assign({event:'engaged_30s'},properties));
+        if(typeof window.gtag==='function') window.gtag('event','engaged_30s',properties);
       }
     },1000);
   })();
