@@ -723,8 +723,11 @@ src="https://www.facebook.com/tr?id=1055742763680174&ev=PageView&noscript=1"
       }
     }
 
-    document.querySelectorAll('a[href*="pf.kakao.com"]').forEach(function(link){
-      link.addEventListener('click',function(){
+    document.addEventListener('click',function(event){
+      var element=event.target.nodeType===1?event.target:event.target.parentElement;
+      if(!element) return;
+      var link=element.closest('a[href*="pf.kakao.com"]');
+      if(link){
         var location='section';
         if(link.classList.contains('hero-cta-link')) location='hero';
         else if(link.classList.contains('spec-cta')) location='model_spec';
@@ -736,18 +739,18 @@ src="https://www.facebook.com/tr?id=1055742763680174&ev=PageView&noscript=1"
           cta_text:(link.textContent||link.getAttribute('aria-label')||'').trim(),
           destination:'kakao_channel'
         });
-      });
-    });
+        return;
+      }
 
-    document.querySelectorAll('a[href*="instagram.com/phonespot.kr"]').forEach(function(link){
-      link.addEventListener('click',function(){
+      var instaLink=element.closest('a[href*="instagram.com/phonespot.kr"]');
+      if(instaLink){
         sendEvent('insta_click',{
           cta_location:'footer',
-          cta_text:(link.textContent||link.getAttribute('aria-label')||'').trim(),
+          cta_text:(instaLink.textContent||instaLink.getAttribute('aria-label')||'').trim(),
           destination:'instagram'
         });
-      });
-    });
+      }
+    },true);
 
     document.addEventListener('click',function(event){
       var element=event.target.nodeType===1?event.target:event.target.parentElement;
